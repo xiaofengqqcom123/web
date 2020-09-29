@@ -1,4 +1,4 @@
-js运行时
+### js运行时
 JavaScript运行时维护了一组用于执行 JavaScript 代码的代理
 每个代理中包含：
 - 一组执行上下文的集合
@@ -8,7 +8,7 @@ JavaScript运行时维护了一组用于执行 JavaScript 代码的代理
 - 一个任务队列
 - 一个微任务队列
 
-消息队列
+### 消息队列
 一个 JavaScript 运行时包含了一个待处理任务的消息队列。每一个任务都关联着一个用以处理这个任务的回调函数，事件循环会从消息队列中取出任务进行处理
 
 消息队列有两种类型，microtask与macrotask，在消息队列中形成了两个队列
@@ -16,7 +16,9 @@ JavaScript运行时维护了一组用于执行 JavaScript 代码的代理
 1. Window 事件循环：同源的window代理的事件循环
 2. Worker 事件循环：包括web worker、shared worker和service worker
 3. Worklet 事件循环：worklet是web worker的轻量级版本
-事件分类
+
+### 事件分类
+
 HTML标准
 - microtask
 - macrotask
@@ -24,8 +26,9 @@ js标准
 - ScriptJobs
 - PromiseJobs
 单个JobQueue FIFO，但ECMA没有规定多个Job Queue的执行顺序
-事件循环机制
-|
+
+### 事件循环机制
+<img src="../assets/eventloop/event-loop.png">
 
 - 从taskQueue取出第一个task执行
 - 执行栈清空
@@ -36,14 +39,15 @@ js标准
 如果带渲染列表存在内容，则进行渲染
 微任务必须等待执行栈清空才会执行
 
-为什么需要microtask？
-microtask优点
+### 为什么需要microtask？
+#### microtask优点
 - 执行时间比下一个macrotask早
 - 微任务的执行不干扰其他任务
 微任务会在执行任何其他事件处理、渲染或任何其他宏任务之前完成
 - 微任务之间的应用程序环境基本相同
 没有交互事件，没有新的渲染，没有新的网络数据
-使用场景
+
+#### 使用场景
 - 在当前脚本执行后立即执行的操作
 - 使一些异步操作尽快执行
 microtask
@@ -60,7 +64,8 @@ promise：
 This can be implemented with either a “macro-task” mechanism such as setTimeout or setImmediate, or with a “micro-task” mechanism such as MutationObserver or process.nextTick
 macrotask
 setTimeout/setInterval/setImmediate/事件等
-小测验
+
+#### 小测验
 ```
 console.log('script start');
 
@@ -86,33 +91,40 @@ setTimeout
 ```
 
 在不同浏览器中运行结果可能不同，以chrome为准
-requestAnimationFrame
-执行位置
+### requestAnimationFrame
+#### 执行位置
 在下次渲染前调用回调函数，一帧中可执行多个回调
 一般屏幕每秒刷新60次，也存在更低或更高情况，该函数的调用次数与屏幕刷新次数相匹配
 但为了提高性能与电池寿命，当运行在后台标签页或隐藏的iframe中时，会暂停rAF的调用。
 如果想在下一帧继续更新动画，则回调函数自身必须再次调用rAF
-rAF vs setTimeout
+#### rAF vs setTimeout
 - setTimeout执行时间不固定，效果不可靠
 - rAF保证每帧均渲染，动画更流畅
 - setTimeout默认timeout为4.7ms，可能造成无效操作
 - rAF执行与屏幕刷新频率一致，降低功耗，避免无效操作
 
-|
-主线程
+<img src="../assets/eventloop/raf.png">
+
+#### 主线程
 JavaScript -> Style  -> Layout  -> Paint
-|
+
+<img src="../assets/eventloop/one.png">
 setTimeout(fn, 0)
-|
+
+<img src="../assets/eventloop/two.png">
+
 setTimeout(fn, 1000/60)
+<img src="../assets/eventloop/three.png">
+
 - 需要考虑设备的刷新频率
 - 可能存在漂移现象
-|
 requestAnimationFrame
-将回调改到渲染前执行
-|
 
-小测验
+<img src="../assets/eventloop/four.png">
+将回调改到渲染前执行
+<br>
+
+**小测验**
 ```
 button.addEventListener('click', () => {
   box.style.display = 'none';
@@ -125,6 +137,7 @@ button.addEventListener('click', () => {
   box.style.display = 'block';
   box.style.display = 'none';
 })
+
 ```
 style的读写
 JavaScript可以对style进行读写操作，但是部分样式为了实时获取或设置，会引发浏览器立即重新渲染
@@ -149,7 +162,8 @@ node中的事件循环
 微任务
 - node中微任务不属于事件循环的一部分，node会在主线程或事件循环的每个阶段完成后，处理微任务队列
 - process.nextTick优先级高于Promise.resolve().then()，如果二者位于同一个微任务队列，前者会被优先调用
-参考链接
+
+> 参考链接
 1. https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/
 2. https://javascript.info/event-loop
 3. https://zh.javascript.info/async-iterators-generators
