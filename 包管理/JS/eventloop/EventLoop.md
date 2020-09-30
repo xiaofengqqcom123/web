@@ -28,7 +28,7 @@ js标准
 单个JobQueue FIFO，但ECMA没有规定多个Job Queue的执行顺序
 
 ### 事件循环机制
-<img src="../assets/eventloop/event-loop.png">
+<img src="./assets/event-loop.png">
 
 - 从taskQueue取出第一个task执行
 - 执行栈清空
@@ -103,24 +103,24 @@ setTimeout
 - setTimeout默认timeout为4.7ms，可能造成无效操作
 - rAF执行与屏幕刷新频率一致，降低功耗，避免无效操作
 
-<img src="../assets/eventloop/raf.png">
+<img src="./assets/raf.png">
 
 #### 主线程
 JavaScript -> Style  -> Layout  -> Paint
 
-<img src="../assets/eventloop/one.png">
+<img src="./assets/one.png">
 setTimeout(fn, 0)
 
-<img src="../assets/eventloop/two.png">
+<img src="./assets/two.png">
 
 setTimeout(fn, 1000/60)
-<img src="../assets/eventloop/three.png">
+<img src="./assets/three.png">
 
 - 需要考虑设备的刷新频率
 - 可能存在漂移现象
 requestAnimationFrame
 
-<img src="../assets/eventloop/four.png">
+<img src="./assets/four.png">
 将回调改到渲染前执行
 <br>
 
