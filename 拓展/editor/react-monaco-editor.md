@@ -6,6 +6,19 @@
 - 处理worker的编译配置
 - 自动引入控件和语言包
 
+webpack.config.js
+```
+  const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+  ...
+  plugins: [
+    new MonacoWebpackPlugin({
+        // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
+        languages: ['sql']
+    }),
+  ]
+   
+```
+
 #### 2. 自定义提示
 
 以sql为例，实现sql语法自定义提示
