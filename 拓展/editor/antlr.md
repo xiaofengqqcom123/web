@@ -8,7 +8,7 @@ antlr是一个包含了词法分析,语法分析两大模块的工具，并且�
 以Bbcode.g4 为例
 <img src="./assets/antlrGrammer.png">
 
-#### Getting started
+#### antlr4ts Getting started
 
 1. Install antlr4ts as a runtime dependency using your preferred package manager.
 ```
@@ -48,6 +48,13 @@ let result = parser.compilationUnit();
 ```
 
 > 为什么要用antlr4ts, 而不是直接用antlr. 事实上antlr4ts只是antlr的ts运行时实现, antlr4默认支持 java, c#, go, python等运行时. 也就是我们可以用其他语言解析grammar. 但是生成其他语言的lexer, parser等需要antlr4 tool (这是由java写的)
+
+#### antlr4 
+
+文档：https://github.com/antlr/antlr4/blob/master/doc/javascript-target.md
+
+
+
 
 
 【参考】
