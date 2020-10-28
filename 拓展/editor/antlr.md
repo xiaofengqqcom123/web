@@ -22,7 +22,7 @@ npm install antlr4ts-cli --save-dev
 或
 yarn add -D antlr4ts-cli
 ```
-3. 使用
+3. 生成语法包
 - Add a grammar to your project, e.g. path/to/MyGrammar.g4
 
 - Add a script to package.json for compiling your grammar to TypeScript
@@ -33,6 +33,7 @@ yarn add -D antlr4ts-cli
   "antlr4ts": "antlr4ts -visitor path/to/MyGrammar.g4"
 }
 ```
+4. 使用
 - Use your grammar in TypeScript
 ```
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -50,11 +51,8 @@ let result = parser.compilationUnit();
 > 为什么要用antlr4ts, 而不是直接用antlr. 事实上antlr4ts只是antlr的ts运行时实现, antlr4默认支持 java, c#, go, python等运行时. 也就是我们可以用其他语言解析grammar. 但是生成其他语言的lexer, parser等需要antlr4 tool (这是由java写的)
 
 #### antlr4 
-
-文档：https://github.com/antlr/antlr4/blob/master/doc/javascript-target.md
-
-
-
+以 sql 为例，https://forcedotcom.github.io/phoenix/index.html
+sql grammer：https://github.com/antlr/antlr4/blob/master/doc/javascript-target.md
 
 
 【参考】
