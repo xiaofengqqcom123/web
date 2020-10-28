@@ -51,8 +51,7 @@ let result = parser.compilationUnit();
 > 为什么要用antlr4ts, 而不是直接用antlr. 事实上antlr4ts只是antlr的ts运行时实现, antlr4默认支持 java, c#, go, python等运行时. 也就是我们可以用其他语言解析grammar. 但是生成其他语言的lexer, parser等需要antlr4 tool (这是由java写的)
 
 #### antlr4 
-以 sql 为例，https://forcedotcom.github.io/phoenix/index.html
-sql grammer：https://github.com/antlr/antlr4/blob/master/doc/javascript-target.md
+以 sql 为例，[sql grammer](https://forcedotcom.github.io/phoenix/index.html)
 
 
 【参考】
@@ -61,3 +60,4 @@ sql grammer：https://github.com/antlr/antlr4/blob/master/doc/javascript-target.
 - [使用antlr4构造我的语法树](https://cloud.tencent.com/developer/article/1571188)
 [antlr4ts - TypeScript/JavaScript target for ANTLR 4](https://www.npmjs.com/package/antlr4ts/v/0.5.0-alpha.2)
 [使用antlr4, 用ts/js还原protobuf生成的java代码为pb (一)](https://www.jianshu.com/p/e54011f407e9)
+[antlr4 for javascript github](https://github.com/antlr/antlr4/blob/master/doc/javascript-target.md)
