@@ -90,6 +90,9 @@ webpack.config.js
 ```
 #### 插入文本
 **需求：** 在当前鼠标的位置插入指定文本的代码如下。如果你已经选定了一段代码的话，应该会替换当前选中的文本
+
+[接口文档](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.icodeeditor.html#executeedits)
+
 ```
    import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 
@@ -131,5 +134,8 @@ webpack.config.js
 ```
 
 
+
 【参考】
 - [闲谈Monaco Editor-基本使用](https://juejin.im/entry/6844903711181897735)
+- [编辑器计算框在光标位置插入文本解决方案](https://www.codenong.com/jsb4c92f63c08e/)
+- [How do I insert text into a Monaco Editor?](https://stackoverflow.com/questions/41642649/how-do-i-insert-text-into-a-monaco-editor)
