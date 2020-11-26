@@ -1,6 +1,9 @@
  ### 使用
 [入门指南](https://github.com/react-monaco-editor/react-monaco-editor)
 
+#### 什么是Monaco Editor？
+微软之前有个项目叫做Monaco Workbench，后来这个项目变成了VSCode，而Monaco Editor（下文简称monaco）就是从这个项目中成长出来的一个web编辑器，他们很大一部分的代码（monaco-editor-core）都是共用的，所以monaco和VSCode在编辑代码，交互以及UI上几乎是一摸一样的，有点不同的是，两者的平台不一样，monaco基于浏览器，而VSCode基于electron，所以功能上VSCode更加健全，并且性能比较强大
+
 #### 1. monaco-editor-webpack-plugin
 - 自动注入getWorkerUrl全局变量
 - 处理worker的编译配置
@@ -84,6 +87,47 @@ webpack.config.js
         />
       </div>
     ) 
+```
+#### 插入文本
+**需求：** 在当前鼠标的位置插入指定文本的代码如下。如果你已经选定了一段代码的话，应该会替换当前选中的文本
+```
+   import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
+
+   ...
+   const monacoEditorRef = React.createRef()
+   ...
+   const insertContent =  (text) => {
+      const editor = monacoEditorRef.current.editor
+      const p = editor.getPosition()
+      editor.executeEdits('',
+      [
+        {
+          range: new monaco.Range(p.lineNumber,
+            p.column,
+            p.lineNumber,
+            p.column),
+          text: text
+        }
+      ]
+    )
+    }
+
+    return (
+        <div>
+            <div onClick={() => insertContent('你说呢，美女？')} >插入文本</div>
+            <MonacoEditor
+                width="100%"
+                height="600"
+                language="sql"
+                value={code}
+                theme="vs-dark"
+                options={options}
+                onChange={onChange}
+                editorDidMount={editorDidMount}
+                ref={monacoEditorRef}
+            />
+        </div>
+      )  
 ```
 
 
