@@ -37,3 +37,17 @@ Now that you’ve created the library and you tested it locally, it’s time to 
 $ cd ./route-to-your-library/
 $ npm publish
 ```
+
+### 3. Updating your library
+We’re arriving at the end of the article, but it’s only the beginning of your library.
+
+If you start using it and other users adopt it, you will also need to maintain it. From time to time you will have to introduce new features or update deprecated code. Whenever you do that, remember to use Semantic Versioning (major.minor.patch).
+
+npm eases the process of maintaining your code with the npm versioning tools:
+
+```
+$ npm version patch # From 0.0.1 to 0.0.2
+$ npm version minor # From 0.1.0 to 0.2.0
+$ npm version major # From 1.0.0 to 2.0.0
+```
+Be aware that npm version updates the package.json, creates a commit and adds a TAG to git.

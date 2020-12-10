@@ -57,9 +57,32 @@ node_module模块划分为：CJS(common模块)、ES(ES模块)、EJS && ES(同时
 ### FQA
 
 #### 为啥node_module支持 Common 模块？
-- 历史原因：
+- 历史原因：从node诞生，node modules 就是使用的common.js
 
+    Since the dawn of Node, Node modules were written as CommonJS modules. We use require() to import them. When implementing a module for other people to use, we can define exports, either “named exports” by setting module.exports.foo = 'bar' or a “default export” by setting module.exports = 'baz'.
 
+    Here’s a CJS example using named exports, where util.cjs has an export named sum.
+
+    ```
+    // @filename: util.cjs
+    module.exports.sum = (x, y) => x + y;
+    // @filename: main.cjs
+    const {sum} = require('./util.cjs');
+    console.log(sum(2, 4));
+    ```
+
+    Here’s a CJS example where util.cjs sets a default export. The default export has no name; modules using require() define their own name.
+    ```
+    // @filename: util.cjs
+    module.exports = (x, y) => x + y;
+    // @filename: main.cjs
+    const whateverWeWant = require('./util.cjs');
+    console.log(whateverWeWant(2, 4));
+    ```
+
+【参考】
+
+- [Node Modules at War: Why CommonJS and ES Modules Can’t Get Along](https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1)
 
 
 
