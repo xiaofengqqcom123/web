@@ -42,6 +42,10 @@
 - HDFS文件交互：copyFromLocal、copyToLocal、get、put等
 帮助命令：./hdfs dfs -help
 ```
+
+**实践**
+1. 概念
+- namespace: Basically when we say Namespace we mean a certain location on the hdfs.In Hadoop we refer to a Namespace as a file or directory which is handled by the Name Node
 ### 2. MapReduce
 
 MapReduce是-种编程模型,是-种编程方法,是抽象的理论
