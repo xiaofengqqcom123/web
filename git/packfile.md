@@ -17,13 +17,13 @@
 - Merkle DAG（Merkle Tree）
 
 ```
-rujunqiao@rujunqiaodeMacBook-Pro:~/Desktop/work/data-workshop/.git/objects (GIT_DIR!)$ git cat-file -t ae6d1140e9911a1ed9cd35a679ed568166da9bad
+ru@rudeMacBook-Pro:~/Desktop/work/data/.git/objects (GIT_DIR!)$ git cat-file -t ae6d1140e9911a1ed9cd35a679ed568166da9bad
 commit
-rujunqiao@rujunqiaodeMacBook-Pro:~/Desktop/work/data-workshop/.git/objects (GIT_DIR!)$ git cat-file -t prod-20190628
+ru@rudeMacBook-Pro:~/Desktop/work/data/.git/objects (GIT_DIR!)$ git cat-file -t prod-20190628
 tag
-rujunqiao@rujunqiaodeMacBook-Pro:~/Desktop/work/data-workshop/.git/objects (GIT_DIR!)$ git cat-file -s prod-20190628
+ru@rudeMacBook-Pro:~/Desktop/work/data/.git/objects (GIT_DIR!)$ git cat-file -s prod-20190628
 139
-rujunqiao@rujunqiaodeMacBook-Pro:~/Desktop/work/data-workshop/.git/objects (GIT_DIR!)$ git cat-file -p prod-20190628
+ru@rudeMacBook-Pro:~/Desktop/work/data/.git/objects (GIT_DIR!)$ git cat-file -p prod-20190628
 object e57db073b033a06cffae9915945d96ee0b4f3b65
 type commit
 tag prod-20190628
