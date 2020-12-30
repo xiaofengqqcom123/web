@@ -80,6 +80,27 @@ node_module模块划分为：CJS(common模块)、ES(ES模块)、EJS && ES(同时
     console.log(whateverWeWant(2, 4));
     ```
 
+#### ESM and CJS different
+- 加载方式:In CommonJS, require() is synchronous; In ESM, the module loader runs in asynchronous phases;
+- CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
+
+#### ESM can’t import named CJS exports unless CJS scripts execute out of order
+You can do this:
+```
+import _ from './lodash.cjs'
+```
+But you can’t do this:
+```
+import {shuffle} from './lodash.cjs'
+```
+
+That’s because CJS scripts compute their named exports as they execute, whereas ESM’s named exports must be computed during the parsing phase.
+Fortunately for us, there’s a workaround! The workaround is annoying, but totally doable. We just have to import CJS scripts like this:
+```
+import _ from './lodash.cjs';
+const {shuffle} = _;
+```
+
 【参考】
 
 - [Node Modules at War: Why CommonJS and ES Modules Can’t Get Along](https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1)
