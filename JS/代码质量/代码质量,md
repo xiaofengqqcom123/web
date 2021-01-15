@@ -1,0 +1,34 @@
+### 1. 控制台：https://developers.google.com/web/tools/chrome-devtools
+### 2. JsDoc: https://en.wikipedia.org/wiki/JSDoc
+### 3. 代码风格指南：
+- Google JavaScript 风格指南
+- [Airbnb JavaScript 风格指南](https://github.com/airbnb/javascript)
+- Idiomatic.JS
+- StandardJS
+...
+
+### 4. 自动检查器
+- JSLint — 第一批检查器之一。
+- JSHint — 比 JSLint 多了更多设置。
+- ESLint — 应该是最新的一个。
+
+例如，你要使用Eslint, 你应该这样做
+- 安装 Node.js
+- 执行 npm i eslint -g
+- 在js根目录下，创建 .eslintrc 文件
+- 在集成了 ESLint 的编辑器中安装/启用插件。大多数编辑器都有这个选项。
+eslintrc文件内容如下：
+```
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "no-console": 0,
+    "indent": 2
+  }
+}
+```
