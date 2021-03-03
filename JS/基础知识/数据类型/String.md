@@ -80,3 +80,8 @@ alert( 'Österreich'.localeCompare('Zealand') ); // -1
 “dot above” 字符（代码 \u0307）
 “dot below”（代码 \u0323）
 ```
+
+#### 类数组（array-like）
+Array-like 是有索引和 length 属性的对象，所以它们看起来很像数组。
+
+字符串就是类数组
