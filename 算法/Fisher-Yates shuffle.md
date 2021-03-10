@@ -51,3 +51,15 @@ for (let key in count) {
 思路： 逆向遍历数组，并将每个元素与其前面的随机的一个元素互换位置；
 
 在性能方面，Fisher — Yates 算法要好得多，没有“排序”开销。
+
+
+
+let john = { name: "John" };
+
+let array = [ john ];
+
+john = null;
+
+
+array[0]
+

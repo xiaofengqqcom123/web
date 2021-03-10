@@ -13,3 +13,66 @@ Map 使用 SameValueZero 算法来比较键是否相等。它和严格等于 ===
 ### Map 是有顺序的
 
 即迭代的顺序与插入值的顺序相同。与普通的 Object 不同，Map 保留了此顺序。
+
+### 转对象？
+1. entries
+```
+let obj = {
+  name: "John",
+  age: 30
+};
+
+let map = new Map(Object.entries(obj));
+
+alert( map.get('name') );
+```
+2.fromEntries: 从 Map 创建对象
+```
+let map = new Map();
+map.set('banana', 1);
+map.set('orange', 2);
+map.set('meat', 4);
+
+let obj = Object.fromEntries(map.entries()); // 创建一个普通对象（plain object）(*)
+
+// 完成了！
+// obj = { banana: 1, orange: 2, meat: 4 }
+
+alert(obj.orange); // 2
+
+
+或者说：
+let obj = Object.fromEntries(map); // 省掉 .entries()，也是可行的
+```
+
+## WeakMap
+正常的垃圾回收机制
+```
+let john = { name: "John" };
+
+let array = [ john ];
+
+john = null; // 覆盖引用
+
+// 前面由 john 所引用的那个对象被存储在了 array 中
+// 所以它不会被垃圾回收机制回收
+```
+
+如果我们在 weakMap 中使用一个对象作为键，并且没有其他对这个对象的引用 —— 该对象将会被从内存（和map）中自动清除。
+```
+let john = { name: "John" };
+
+let weakMap = new WeakMap();
+weakMap.set(john, "...");
+
+john = null; // 覆盖引用
+
+// john 被从内存中删除了！
+```
+
+key值必须为对象
+
+## Set
+ 是一个特殊的类型集合 —— “值的集合”（没有键），它的每一个值只能出现一次。
+
+ key值必须为对象
