@@ -1,0 +1,1 @@
+apm 通常使用 unhandledrejection 和 window.onerror 捕获error信息

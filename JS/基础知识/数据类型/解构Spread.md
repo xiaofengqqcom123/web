@@ -41,6 +41,24 @@ let title, width, height;
 ({title, width, height}) = {title: "Menu", width: 200, height: 100};
 ```
 
+获取一个 array/object 的副本
+```
+let obj = { a: 1, b: 2, c: 3 };
+let objCopy = { ...obj }; // 将对象 spread 到参数列表中
+                          // 然后将结果返回到一个新对象
+
+// 两个对象中的内容相同吗？
+alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true
+
+// 两个对象相等吗？
+alert(obj === objCopy); // false (not same reference)
+
+// 修改我们初始的对象不会修改副本：
+obj.d = 4;
+alert(JSON.stringify(obj)); // {"a":1,"b":2,"c":3,"d":4}
+alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
+```
+
 ## 函数中的结构
 ```
 function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
@@ -49,3 +67,4 @@ function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
 
 showMenu(); // Menu 100 200
 ```
+
