@@ -122,16 +122,10 @@ _.partial(func, [partials])#
 ```
 创建一个函数。 该函数调用 func，并传入预设的 partials 参数。 这个方法类似_.bind，除了它不会绑定 this。
 
-
-
-
-
-
 ```
 function partial(func, ...argsBound) {
   return function(...args) { // (*)
-    console.log('this', this)
-    return func(...args);
+    return func.call(this, ...argsBound, ...args);
   }
 }
 
@@ -139,18 +133,35 @@ function partial(func, ...argsBound) {
 let user = {
   firstName: "John",
   say(time, phrase) {
-    this.firstName = 'rujunqiao'
-    alert(this.firstName);
+    alert(`[${time}] ${this.firstName}: ${phrase}!`);
   }
 };
 
-user.say()
-
 // 添加一个带有绑定时间的 partial 方法
-user.sayNow = partial(user.say);
+user.sayNow = partial(user.say, new Date().getHours() + ':' + new Date().getMinutes());
 
-user.sayNow('10', "Hello");
-// 类似于这样的一些内容：
-// [10] John: Hello!
+user.sayNow("Hello");
 ```
+
+## 常见error
+### 2次绑定bind
+```
+function f() {
+  alert(this.name);
+}
+
+f = f.bind( {name: "John"} ).bind( {name: "Ann" } );
+
+f();
+```
+答案：John。
+
+仅在创建的时候记忆上下文（以及参数，如果提供了的话）。
+
+一个函数不能被重绑定（re-bound）。
+
+
+
+
+
 
