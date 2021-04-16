@@ -10,7 +10,7 @@ __proto__ 属性有点过时了。它的存在是出于历史的原因，现代�
 
 由于 __proto__ 标记在观感上更加明显，所以我们在后面的示例中将使用它。
 
-#### 1. 为什么 __proto__ 不规范呢？
+### 1. 为什么 __proto__ 不规范呢？
 看下面的例子：
 ```
 let obj = {};
@@ -38,8 +38,11 @@ alert(obj[key]); // "some value"
 我们知道果 obj.__proto__ 被读取或者赋值，那么对应的 getter/setter 会被从它的原型中调用，它会 set/get [[Prototype]]。
 Object.create(null) 创建了一个空对象，这个对象没有原型（[[Prototype]] 是 null）
 
+- 方法二：
+改用 Map 来代替普通对象进行存储，这样一切都迎刃而解
 
-#### 2. 应该用啥代替 __proto__ ?
+
+### 2. 应该用啥代替 __proto__ ?
 Object.getPrototypeOf(obj) —— 返回对象 obj 的 [[Prototype]]（与 __proto__ 的 getter 相同）。
 
 Object.setPrototypeOf(obj, proto) —— 将对象 obj 的 [[Prototype]] 设置为 proto（与 __proto__ 的 setter 相同）。
