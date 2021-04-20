@@ -1,10 +1,8 @@
 this 指向，很容易让人迷惑，下面由简入深，讲解下this指向. 
 this 的值是在代码运行时计算出来的，它取决于代码上下文。它的值并不取决于方法声明的位置，而是取决于在“点符号前”的是什么对象。
 
-
-
-
 ## 1. 对象里的this
+### a. 常规用法
 为了访问该对象，方法中可以使用 this 关键字。
 ```
 let user = {
@@ -20,6 +18,42 @@ let user = {
 
 user.sayHi(); // John
 ```
+### b.this丢失？
+```
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+
+  click() {
+    alert(this.value);
+  }
+}
+
+let button = new Button("hello");
+
+setTimeout(button.click, 1000); // undefined
+```
+
+如何解决呢？
+- 传递一个包装函数，例如 setTimeout(() => button.click(), 1000)。
+- 将方法绑定到对象，例如在 constructor 中
+- 类字段提供了另一种非常优雅的语法
+```
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+  click = () => {
+    alert(this.value);
+  }
+}
+
+let button = new Button("hello");
+
+setTimeout(button.click, 1000); // hello
+```
+
 ## 2. 函数中的this
 ### 1. 箭头函数
 在箭头函数出现之前，每一个新函数根据它是被如何调用的来定义这个函数的this值：
@@ -44,7 +78,23 @@ obj.a()   // 没有使用箭头函数打出的是obj
 obj.b.c() // 打出的是window对象！！
 obj.bb.c() // bb
 ```
+2. 案例二
+```
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+  click = () => {
+    alert(this.value);
+  }
+}
 
+let button = new Button("hello");
+
+let test = button.click
+test()
+setTimeout(button.click, 1000); // hello
+```
 
 
 箭头函数没有 this。如果访问 this，则会从外部获取。
