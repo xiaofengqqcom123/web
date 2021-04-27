@@ -8,6 +8,8 @@ let url = new URL('https://javascript.info/profile/admin');
 ```
 <img src="./assets/url.png" />
 
+我们可以将 URL 对象传递给网络（和大多数其他）方法，而不是字符串
+
 ## 2.SearchParams “?…”
 它为搜索参数提供了简便的方法：
 
