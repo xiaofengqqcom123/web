@@ -25,3 +25,41 @@ let doublePrices = Object.fromEntries(
 
 alert(doublePrices.meat); // 8
 ```
+## 几种遍历对象的区别
+1. Object.getOwnPropertyNames(): 获取对象自身属性， 返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性，不包含原型链上的属性）组成的数组
+```
+function ParentClass() {}
+ParentClass.prototype.inheritedMethod = function() {};
+
+function ChildClass() {
+  this.prop = 5;
+  this.method = function() {};
+}
+
+ChildClass.prototype = new ParentClass;
+ChildClass.prototype.prototypeMethod = function() {};
+
+console.log(
+  Object.getOwnPropertyNames(
+    new ChildClass()  // ["prop", "method"]
+  )
+);
+```
+2. Object.keys(): 返回一个由一个给定对象的自身可枚举属性组成的数组
+3. for ... in: 以任意顺序遍历一个对象的除Symbol以外的可枚举属性(包含继承的属性)
+```
+var triangle = {a: 1, b: 2, c: 3};
+
+function ColoredTriangle() {
+  this.color = 'red';
+}
+
+ColoredTriangle.prototype = triangle;
+
+var obj = new ColoredTriangle();
+
+for (var prop in obj) {
+    console.log(prop); // color, a, b , c
+
+}
+```
