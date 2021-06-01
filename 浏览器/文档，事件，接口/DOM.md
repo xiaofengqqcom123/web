@@ -30,6 +30,10 @@ HTML 节点：包含 HEAD、BODY 节点
 - 如果我们在 </body> 之后放置一些东西，那么它会被自动移动到 body 内，并处于 body 中的最下方，因为 HTML 规范要求所有内容必须位于 <body> 内。所以 </body> 之后不能有空格。
 
 ### DOM 遍历
+这里是一张描述对象间链接的图片，通过这些链接我们可以在 DOM 节点之间移动。
+
+<img src="../assets/dom.png">
+
 给定一个 DOM 节点，我们可以使用导航（navigation）属性访问其直接的邻居。
 
 这些属性主要分为两组：
@@ -37,6 +41,13 @@ HTML 节点：包含 HEAD、BODY 节点
 - 对于所有节点：parentNode，childNodes，firstChild，lastChild，previousSibling，nextSibling。
 - 仅对于元素节点：parentElement，children，firstElementChild，lastElementChild，previousElementSibling，nextElementSibling。
 
+**DOM集合**
+正如我们看到的那样，childNodes 看起来就像一个数组。但实际上它并不是一个数组，而是一个 集合 — 一个类数组的可迭代对象。
+- 可以使用 for ... of 循环
+- 不可使用 Array 方法，例如：filter（document.body.childNodes.filter, undefined）
+- DOM 集合是只读的
+- DOM 集合是实时的
+- 不要使用 for ... in 循环
 ### 查找 DOM
 <img src="../assets/WechatIMG342.png">
 此外：
