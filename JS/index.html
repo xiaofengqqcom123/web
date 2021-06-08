@@ -1,0 +1,27 @@
+<html>
+
+</html>
+<script>
+    function findMaxLength(nums) {
+        const len0 = nums.filter(d => !d).length
+        let maxSub0Length = Math.min(len0, nums.length - len0)
+        let maxSunLength = maxSub0Length * 2
+
+
+        while(maxSub0Length >= 0) {
+            for(let i = 0; i <= nums.length - maxSunLength; i++) {
+                const targetArr = nums.slice(i, maxSunLength + i)
+                const len0 = targetArr.filter(d => !d).length
+                if(len0 === maxSub0Length) {
+                    console.log('maxSunLength==', maxSunLength)
+                    return maxSunLength
+                }
+            }
+            maxSub0Length = maxSub0Length - Math.abs(len0 - maxSub0Length)
+            maxSunLength = maxSub0Length * 2
+        }
+    };
+
+    const a = findMaxLength([0,1,1,0,1,1,1,0])
+    console.log('a', a)
+</script>
