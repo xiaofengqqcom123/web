@@ -21,10 +21,13 @@ CRLF  "\r\n", windows系统环境下的换行方式
 LF "\n", Linux系统环境下的换行方式
 ```
 
-### ESLint
+### 2. ESLint
 作用：js代码检测
 
 举个例子：const 变量不可修改提示
 
-### StyleLint
+### 3. StyleLint
 作用：Css 代码检查
+
+## 提升效率
+GitLens： 查看文档修改历史
