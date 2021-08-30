@@ -20,6 +20,9 @@ curl -v whale.miui.com: 1800
 curl -v -compressed whale.miui.com: 919
 
 
+<!-- kuai -->
+1. div 宽高比 4: 3
+
 
 
 

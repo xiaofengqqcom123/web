@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<style>
+    .box {
+        display: flex;
+        /* width: 100px; */
+    }
+
+
+    .first {
+        flex-shrink: 1;
+        flex-basis: 250px;
+        border: 1px solid red;
+    }
+
+    .second {
+        flex-shrink: 2;
+        flex-basis: 500px;
+        border: 1px solid red;
+    }
+
+</style>
+</head>
+<body>
+    <div class="box">
+        <div class="first">first
+            hahha
+        </div>
+        <div class="second">second</div>
+    </div>
+ 
+</body>
+
+<script>
+    // function debounce(fun, delay) {
+    //     let timer 
+    //     return function(...arg) {
+    //         if(timer) {
+    //             clearTimeout(timer)
+    //         }
+    //         timer = setTimeout(fun.call(this, arg), delay)
+    //     }
+    // }
+
+    // let fun = debounce(() => {
+    //     console.log('hahh')
+    // }, 1000)
+
+
+    // function throttle(fun, delay) {
+    //     let start = null
+    //     return function(...arg) {
+    //         const now = +new Date()
+    //         if(!start || now - start >= delay) {
+    //             fun.call(this, arg)
+    //             start = +new Date()
+    //         }
+    //     }
+
+    // }
+    // let fun = debounce(() => {
+    //     console.log('hahh')
+    // }, 1000)
+
+    function deepClone(obj) {
+        if(!obj || typeof obj !== 'object') {
+            return 
+        }
+
+        const res = Array.isArray(obj) ? [] : {}
+
+        for(let key in obj) {
+            res[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key]
+        }
+
+        return res
+    }
+
+    const arr = []
+</script>
+</html>
