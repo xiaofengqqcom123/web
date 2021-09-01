@@ -1,3 +1,4 @@
+# 整数
 ## 整数与二进制位
 - 计算机使用二进制存储和传输
   - 传输的最小单位是位（bit）
@@ -57,3 +58,59 @@
 - \>>：按位右移，左边补符号位（最高位）
 - \>>>：按位无符号右移，左边补 0
 
+#### [字节序](./字节序.md)
+
+# 浮点数
+#### 定点数与浮点数
+- 如何表达小数？
+- 定点数：在整数的二进制位里加入固定的小数点
+  - 例如 8 位的后 3 位为小数：00011.101 = 3.625
+    - 最大数为 11111.111 = 255/8，最小正数为 1/8
+    - 相当于整数除以常数，无法表达极大的数和极小的正数
+- 浮点数：浮动的小数点
+  - 二进制科学计数法：±1 * 1.fraction * 2**(exp - bias)
+    - fraction（尾数）：1 <= 1.fraction < 2
+    - exp - bias（指数）：exp >= 0，bias 是指数偏移常量
+IEEE-754 浮点数标准
+- 标准化了各种位数浮点数的二进制位，未标准化字节序
+  - 总位数 = 1（最高位的符号位） + 指数位数 + 尾数位数
+  - 单精度浮点数（32 位）：1+8+23，指数偏移为 127
+  - 双精度浮点数（64 位）：1+11+52，指数偏移为 1023
+- 标准化了规约数、非规约数、±0、±∞、NaN，以 32 位为例
+  - 规约数（1<=exp<=254）：1.fraction * 2**(exp - 127)
+  - 非规约数（exp=0, fraction>0）：0.fraction * 2**(-126)
+  - ±0（exp=0, fraction=0）
+  - ±∞（exp=255, fraction=0）NaN（exp=255, fraction>0）
+  
+<img src="./assets/float32.png">
+<img src="./assets/float64.png">
+
+#### 非规约数的作用
+- 以 1+4+3、bias=7 的 8 位浮点数为例
+  - 最小的正规约数 f1 = 1.000 * 2**(-7) = 1/64
+  - 第二小的正规约数 f2 = 1.001 * 2**(-7) = (9/8)/64
+  - f1 和 f2 之间的距离是 (1/8)/64
+  - 但 0 和 f1 之间的距离是 1/64，密度突然变低
+  - 非规约数可避免 0 和 最小的正规约数之间的密度突然降低
+  - 下图中黑点为规约数，红点为非规约数
+  
+  <img src="./assets/非约数.png">
+
+#### 浮点数的舍入误差
+- 计算机只能表达离散值，无法表达所有实数
+- 无法精确表达时只好舍入到最接近的值
+- 默认的舍入策略：Round to nearest, ties to even
+- 0.1 + 0.2 > 0.3，以 ECMAScript 为例（64 位浮点数）
+  - (0.1).toString(2)
+  - (0.2).toString(2)
+  - (0.1 + 0.2).toString(2)
+  - (0.3).toString(2)
+  #### 参考资料
+- https://en.wikipedia.org/wiki/Signed_number_representations
+- https://en.wikipedia.org/wiki/Endianness
+- https://en.wikipedia.org/wiki/IEEE_754
+- Floating-point representation
+- IEEE-754 Analysis
+- What Every Computer Scientist Should Know About Floating-Point Arithmetic
+- V8 Internals: How Small is a “Small Integer?”
+- BigInts in JavaScript: A case study in TC39
