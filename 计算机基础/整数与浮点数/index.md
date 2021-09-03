@@ -105,6 +105,48 @@ IEEE-754 浮点数标准
   - (0.2).toString(2)
   - (0.1 + 0.2).toString(2)
   - (0.3).toString(2)
+
+#### 各种编程语言的数值类型
+  ECMAScript 数值类型
+- Number：64 位浮点数（IEEE-754）
+  - Number.MAX_SAFE_INTEGER == 2**53 - 1
+    - 2**53 - 1 < 2**53 == 2**53 + 1 < 2**53 + 2
+  - 却支持 32 位整数的位运算：~、&、|、^、<<、>>、>>>
+    - 因此 asm.js 生成这种代码：a = a|0
+  - V8 内部用 Smi 优化小整数的性能
+- BigInt：无限精度的整数（ES2019），不能和 Number 混合运算
+  - BigInt(2**53) < BigInt(2**53) + BigInt(1)
+- 解析与编码：ArrayBuffer 配合 typed array objects 或 DataView
+Python 数值类型
+- Python2
+  - int：C 语言的 long 类型，[-sys.maxint - 1, sys.maxint]
+    - type(sys.maxint) != type(2**63 - 1)，为什么？
+  - long：无限精度的整数
+- Python3 合并为 int：无限精度的整数
+- float：64 位浮点数，无法做位运算（这点比 ECMAScript 优雅）
+- complex：两个 64 位浮点数，比如 z = 3+4j
+- 混合运算运行期类型提升：int => long => float => complex
+- 解析与编码：struct 的 pack 和 unpack 方法
+Java 数值类型
+- byte：8 位有符号整数
+- short：16 位有符号整数
+- int：32 位有符号整数，Java SE 8 之后同类型支持无符号
+- long：64 位有符号整数，Java SE 8 之后同类型支持无符号
+- 整数都使用补码表示，因此可同时支持有符号和无符号
+- float：32 位浮点数
+- double：64 位浮点数
+- 混合运算编译期类型提升
+- 解析与编码：ByteBuffer 的 getInt/putInt 等方法
+C/C++ 数值类型
+- 整数（32 位系统）
+  - Win16：LP32 或 2/4/4（int 为 16 位，long 和指针为 32 位）
+  - Win32 / Linux：ILP32 或 4/4/4（int、long 和指针为 32 位）
+- 整数（64 位系统）
+  - Win64：LLP64 或 4/4/8（int、long 为 32 位，指针为 64 位）
+  - Linux：LP64 或 4/8/8（int 为 32 位，long 和指针为 64 位）
+- 浮点数：float（32 位）double（64 位）long double（80 位）
+- 整数表达跟随系统环境（原码、反码或补码），C++20 规范为补码
+- 混合运算编译期类型提升
   #### 参考资料
 - https://en.wikipedia.org/wiki/Signed_number_representations
 - https://en.wikipedia.org/wiki/Endianness
