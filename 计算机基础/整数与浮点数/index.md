@@ -160,6 +160,7 @@
   
 
   #### 参考资料
+- [什么是浮点数？](https://zhuanlan.zhihu.com/p/339949186)
 - https://en.wikipedia.org/wiki/Signed_number_representations
 - https://en.wikipedia.org/wiki/Endianness
 - https://en.wikipedia.org/wiki/IEEE_754
