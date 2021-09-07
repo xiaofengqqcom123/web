@@ -6,19 +6,18 @@
 <style>
     .box {
         display: flex;
-        /* width: 100px; */
     }
 
+    .first-box {
+        border: 1px solid green;
+    }
 
     .first {
-        flex-shrink: 1;
-        flex-basis: 250px;
         border: 1px solid red;
+        transform: scale(0.5);
     }
 
     .second {
-        flex-shrink: 2;
-        flex-basis: 500px;
         border: 1px solid red;
     }
 
@@ -26,9 +25,12 @@
 </head>
 <body>
     <div class="box">
-        <div class="first">first
-            hahha
+        <div class="first-box">
+            <div class="first">first
+                hahha
+            </div>
         </div>
+   
         <div class="second">second</div>
     </div>
  

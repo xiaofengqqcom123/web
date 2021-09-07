@@ -71,7 +71,7 @@
   - 二进制科学计数法：±1 * 1.fraction * 2**(exp - bias)
     - fraction（尾数）：1 <= 1.fraction < 2
     - exp - bias（指数）：exp >= 0，bias 是指数偏移常量
-IEEE-754 浮点数标准
+#### IEEE-754 浮点数标准
 - 标准化了各种位数浮点数的二进制位，未标准化字节序
   - 总位数 = 1（最高位的符号位） + 指数位数 + 尾数位数
   - 单精度浮点数（32 位）：1+8+23，指数偏移为 127
@@ -107,8 +107,13 @@ IEEE-754 浮点数标准
   - (0.3).toString(2)
 
 #### 各种编程语言的数值类型
-  ECMAScript 数值类型
-- Number：64 位浮点数（IEEE-754）
+> There are only two kinds of languages: the ones people complain about and the ones nobody uses.
+>——Bjarne Stroustrup
+
+  <img src="./assets/strong.png">
+
+#### ECMAScript 数值类型
+- **Number**：64 位浮点数（IEEE-754）
   - Number.MAX_SAFE_INTEGER == 2**53 - 1
     - 2**53 - 1 < 2**53 == 2**53 + 1 < 2**53 + 2
   - 却支持 32 位整数的位运算：~、&、|、^、<<、>>、>>>
@@ -117,7 +122,8 @@ IEEE-754 浮点数标准
 - BigInt：无限精度的整数（ES2019），不能和 Number 混合运算
   - BigInt(2**53) < BigInt(2**53) + BigInt(1)
 - 解析与编码：ArrayBuffer 配合 typed array objects 或 DataView
-Python 数值类型
+
+#### Python 数值类型
 - Python2
   - int：C 语言的 long 类型，[-sys.maxint - 1, sys.maxint]
     - type(sys.maxint) != type(2**63 - 1)，为什么？
@@ -127,7 +133,8 @@ Python 数值类型
 - complex：两个 64 位浮点数，比如 z = 3+4j
 - 混合运算运行期类型提升：int => long => float => complex
 - 解析与编码：struct 的 pack 和 unpack 方法
-Java 数值类型
+
+#### Java 数值类型
 - byte：8 位有符号整数
 - short：16 位有符号整数
 - int：32 位有符号整数，Java SE 8 之后同类型支持无符号
@@ -137,7 +144,8 @@ Java 数值类型
 - double：64 位浮点数
 - 混合运算编译期类型提升
 - 解析与编码：ByteBuffer 的 getInt/putInt 等方法
-C/C++ 数值类型
+
+#### C/C++ 数值类型
 - 整数（32 位系统）
   - Win16：LP32 或 2/4/4（int 为 16 位，long 和指针为 32 位）
   - Win32 / Linux：ILP32 或 4/4/4（int、long 和指针为 32 位）
@@ -147,12 +155,16 @@ C/C++ 数值类型
 - 浮点数：float（32 位）double（64 位）long double（80 位）
 - 整数表达跟随系统环境（原码、反码或补码），C++20 规范为补码
 - 混合运算编译期类型提升
+  <img src="./assets/c.png">
+  <img src="./assets/signed.png">
+  
+
   #### 参考资料
 - https://en.wikipedia.org/wiki/Signed_number_representations
 - https://en.wikipedia.org/wiki/Endianness
 - https://en.wikipedia.org/wiki/IEEE_754
-- Floating-point representation
-- IEEE-754 Analysis
-- What Every Computer Scientist Should Know About Floating-Point Arithmetic
-- V8 Internals: How Small is a “Small Integer?”
-- BigInts in JavaScript: A case study in TC39
+- [Floating-point representation](http://www.toves.org/books/float/)
+- [IEEE-754 Analysis](https://ysangkok.github.io/IEEE-754/index.xhtml)
+- [What Every Computer Scientist Should Know About Floating-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
+- [V8 Internals: How Small is a “Small Integer?”](https://medium.com/fhinkel/v8-internals-how-small-is-a-small-integer-e0badc18b6da)
+- [BigInts in JavaScript: A case study in TC39](https://docs.google.com/presentation/d/1apPbAiv_-mJF35P31IjaII8UA6TwSynCA_zhfDEmgOE/edit)
