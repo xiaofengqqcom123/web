@@ -21,6 +21,36 @@ CRLF  "\r\n", windows系统环境下的换行方式
 LF "\n", Linux系统环境下的换行方式
 ```
 
+vscode 配置
+```
+{
+  "window.zoomLevel": 1,
+  "editor.formatOnSave": false,
+  "edenDevelopEnvironment.filterWarnings": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "tabnine.experimentalAutoImports": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+
+```
+
 ### 2. ESLint
 作用：js代码检测
 
@@ -31,3 +61,5 @@ LF "\n", Linux系统环境下的换行方式
 
 ## 提升效率
 GitLens： 查看文档修改历史
+
+

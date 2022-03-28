@@ -1,49 +1,31 @@
 <html>
+  <style>
+    .father {
+      border: 1px solid red;
+      overflow: hidden;
+      height: 300px;
+    }
+    
+    .first {
+      border: 1px solid green;
+      width: 200px;
+      height: 300px;
+      position: fixed;
+      top: 0;
+    }
 
+    .second {
+      border: 1px solid green;
+      width: 200px;
+      height: 300px;
+    }
+  </style>
+  
+    <div class="father">
+      <div class="first">first</div>
+    </div>
+    <div class="second">哈哈哈</div>
 </html>
 <script>
-    // 第 1 题
-    function foo() {
-        this.name = 'animal'
-    }
-
-    function boo() {}
-    boo.mycall(foo)
-
-    Function.prototype.mycall = function (context) {
-        context.fun = this
-        context.fun()
-        delete context.fun
-    }
-
-
-    // 第 2 题
-    console.log(1)
-    setTimeout(function() { console.log(2)
-    })
-    new Promise(function (resolve) { 
-        console.log(3)
-        resolve()
-    }).then(function () { console.log(4)
-    }).then(function() { console.log(5)
-    })
-
-    console.log(6)
-
-    // 1 3 6 4 5 2
-
-    // JS
-    // wei
-
-    // 第 3 题
-    // tree shaking
-
-    // react fiber
-
     
-
-    // 1. npm ci -production npm ci => npm ci --prfotion
-    // combo
-    // graphql
-
 </script>
