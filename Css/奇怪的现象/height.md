@@ -29,5 +29,7 @@
 ```
 
 **why ?**
+
 https://www.w3.org/TR/css-sizing-3/#cyclic-percentage-contribution
+
 简而言之：百分比必须要保证父元素有确定的尺寸。这个和尺寸计算顺序有关，不能说里面的尺寸依赖于外面的尺寸，而外面的尺寸又依赖里面的尺寸。计算就直接死循环算不出来了
