@@ -17,7 +17,8 @@ https://cloud.tencent.com/developer/article/1555982
 
 通过 npm config get cache 命令可以查询到：在 Linux 或 Mac 默认是用户主目录下的 .npm/_cacache 目录。
 
-我们知道NPM就是用了cacache来作为缓存，所以这个目录里面应该就是缓存的内容。
+我们知道NPM就是用了cache 来作为缓存，所以这个目录里面应该就是缓存的内容。
+
 <img src="./assets/cache.png">
 
 1. package.local.json：pacote:range-manifest:{url}:{integrity}作为key =>  SHA256 => hash
