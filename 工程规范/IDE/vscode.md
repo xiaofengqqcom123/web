@@ -32,6 +32,11 @@ vscode 配置
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "tabnine.experimentalAutoImports": true,
+  "editor.codeActionsOnSave": {
+    <!-- 用于 import/order 格式化 -->
+    "source.fixAll": true,
+    "source.fixAll.eslint": true
+  },
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
