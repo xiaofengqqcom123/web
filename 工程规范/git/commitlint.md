@@ -23,7 +23,8 @@ git commit -m 'fix(scope): fix ie6 margin bug'
 > https://mengsixing.github.io/blog/devops-commitlint.html#commitlint-%E6%8E%A8%E8%8D%90%E7%9A%84%E6%A0%BC%E5%BC%8F
 
 ## 配置
-[官方文档](https://commitlint.js.org/#/guides-local-setup)
+> - [官方文档](https://commitlint.js.org/#/guides-local-setup)
+> - [[前端工程化配置] husky + lint-staged 格式化git提交代码](https://juejin.cn/post/7085534305249656862)
 
 ### 1. 安装依赖包
 ```
@@ -58,13 +59,36 @@ module.exports = { extends: ['@commitlint/config-conventional'] };
 npx husky add .husky/commit-msg  'npx --no -- commitlint --edit ${1}'
 ```
 
+package.json 配置
+```
+  "scripts": {
+    ...,
+    "commitlint": "commitlint --config commitlint.config.js -e -V"
+  },
+```
 
 #### 方式二：
 package.json 配置
 ```
+  "scripts": {
+    ...,
+    "commitlint": "commitlint --edit"
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
+    ]
+  },
+ "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --cache --fix"
     ]
   },
 ```
@@ -74,4 +98,13 @@ package.json 配置
 npm pkg set scripts.commitlint="commitlint --edit"
 npx husky add .husky/commit-msg 'npm run commitlint ${1}'
 ```
+
+### 总结
+**我们从头理一下工具的工作模式：**
+
+1. 格式化
+当我们进行一次git提交时 => 触发husky配置的pre-commit钩子 => 执行npm run lint-staged命令 => 触发lint-staged对暂存区的文件进行格式化（使用package.json中配置的lint-staged任务） => 使用eslint 进行格式化
+
+2. commit message 校验
+当我们进行一次git提交时 => 触发husky配置的commit-msg钩子 => 执行npm run commitlint命令
 
