@@ -17,9 +17,9 @@ Chrome 计划从 2024 年第一季度开始对 1% 的用户禁用第三方 Cooki
 
 下面是 “跨站”（cross site） 和  “跨源” （cross origin）请求的对比：
 “跨源” （cross origin）
-[图片]
+<img src="./assets/cross-origin.png">
 “跨站”（cross site）
-[图片]
+<img src="./assets/crosssite.png">
 Chrome 发送请求时会附带一个  Sec-Fetch-Site HTTP Header ，通过这个值也可以很好的判定是否为跨站请求。
 
 ---
