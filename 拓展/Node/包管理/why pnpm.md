@@ -68,7 +68,7 @@ src/index.js
 但是因为prettier和eslint的相关设计缺陷，导致其经常强依赖其相关的plugin存放在项目根目录的node_modules里，因此pnpm默认并没有禁止所有的库的hoist行为，而是给eslint和prettier开了后门。
 
 如我们引入了create-react-app这个直接依赖进行安装后，惊讶的发现我们根目录的node_modules多了很多的其他的依赖。我们发现其中都是eslint和types的相关依赖被hoist上来。
-<img src="./assets/eslint.png">
+<img src="./assets/eslint.png" width="200">
 
 默认值见: https://pnpm.io/npmrc#public-hoist-pattern。
 
