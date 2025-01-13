@@ -1,9 +1,40 @@
 <html>
-    
-    <div class="">
-        <div class="">test1</div>
-        <div>test1</div>
-        <div>test1</div>
+    <style>
+      .father {
+        /* display: flex;
+        flex-wrap: wrap; */
+        border: 1px solid greenyellow;
+        overflow: hidden;
+        width: 100%;;
+      }
+        .test {
+            width: 400px;
+            height: 100px;
+            max-width: 500px;
+            border: 1px solid red;
+            margin: 10px;
+            overflow: hidden;
+        }
+
+        .test1 {
+          float: left;
+          width: 400px;
+
+          height: 100px;
+            max-width: 500px;
+            border: 1px solid red;
+            margin: 10px;
+        }
+    </style>
+
+    <div class="father">
+        <div class="test1">float left</div>
+        <div class="test">test1</div>
+        <!-- <div class="test">test1</div>
+        <div class="test">test1</div>
+        <div class="test">test1</div>
+        <div class="test">test1</div>
+        <div class="test">test1</div> -->
     </div>
     
 </html>
@@ -37,18 +68,20 @@
 //   alert(args + 'call:' + args.join()); // "call:1,2", "call:4,5"
 // }
 
+
 new Promise((resolve, reject) => {
   console.log('1');
   setTimeout(() => {
     console.log('3');
   }, 0);
   resolve();
+  console.log('4');
 }).then(() => {
   console.log('2');
 });
 
-function Promise (excutor) {
-    return (resove, reject) => {}
-}
+// function Promise (excutor) {
+//     return (resove, reject) => {}
+// }
 
 </script>
