@@ -1,7 +1,17 @@
-### 核心
-- HDFS分布式文件系统：存储是大数据技术的基础
-- MapReduce编程模型：分布式计算是大数据应用的解决方案
-### 1. HDFS
+# Google 三架马车
+Google发布的三篇关于大数据套件的论文，包含了大数据的**文件系统、分布式数据库、计算**三个方向的能力。分别对应的是**GFS、BigTable、MapReduce**。
+> 论文地址
+> - [Google File System](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/gfs-sosp2003.pdf)
+> - [MapReduce](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf)
+> [BigTable](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/bigtable-osdi06.pdf)
+
+## GFS(HDFS)
+> HDFS是GFS的开源实现，GFS是Google论文提到的文件存储系统
+
+<img src="./assets/gfs.png">
+
+HDFS是Hadoop分布式文件系统，具有高容错性、高伸缩性，允许用户基于廉价硬件部署，构建分布式存储系统，为分布式计算存储提供了底层支持。上图是HDFS的架构。
+
 **概念**: 
 - **数据块**:  抽象块而非整个文件作为存储单元；一般设置为64BM，备份X3
 - **NameNode**:  管理文件系统的命名空间，文件元数据；维护着文件系统的所有文件和目录，文件与数块的映射；记录每个文件中各个块所在数据节点的信息
@@ -89,3 +99,10 @@ Hadoop2.0后，资源管理器，所有的mapReduce程序都需要通过yarn来�
 基于内存计算的分布式计算框架<br/>
 抽象出分布式内存存储数据结构 弹性分布式数据集RDD<br/>
 基于时间驱动，通过线程池提高性能
+
+
+
+### 核心
+- HDFS分布式文件系统：存储是大数据技术的基础
+- MapReduce编程模型：分布式计算是大数据应用的解决方案
+### 1. HDFS
