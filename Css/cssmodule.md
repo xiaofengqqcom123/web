@@ -1,5 +1,15 @@
 多个css文件时，会存在css重名问题~
-### 1. CSS-in-JS
+##  CSS-in-JS vs less、scss
+### less
+less 是一种动态样式语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。
+less 是一种 css 预处理器，它可以在 css 代码编写前，对 css 代码进行预处理，生成最终的 css 代码。
+less 可以通过 npm 安装，然后在项目中引入使用。
+
+```
+npm install less --save-dev
+```
+### CSS-in-JS
+CSS-in-JS 是指将 CSS 代码嵌入到 JavaScript 代码中，通过 JavaScript 动态生成 CSS 样式。
 简单来说,传统的前端方案推崇"关注点分离"原则，HTML、CSS、JavaScript 应该各司其职，进行分离。
 
 而在react项目中，更提倡组件化方案，自然形成了将HTML、CSS、JavaScript集中编写管理的方式
@@ -17,6 +27,7 @@ const Widget = () => {
 但是这种写法的弊端在于，react中的style仅仅是简单的Object，不支持复杂的嵌套、选择器等特性，使用起来很不方便。 因此，便出现了大量的三方库来进行拓展，这些库统称为css-in-js。它们一般都支持样式嵌套、选择器、主题配置等特性
 
 > 有人专门统计了现有的css-in-js三方库，轮子不要太多： css in js [三方库](http://michelebertoli.github.io/css-in-js/)一览 。比较流行的主要有: styled-components, emotion, glamorous。
+
 
 
 #### emotion的用法示例
@@ -42,7 +53,8 @@ render(
 )
 ```
 
-### 2. BEM
+## 类名冲突
+### 1. BEM
 > [BEM](http://getbem.com/) — Block Element Modifier is a methodology that helps you to create reusable components and code sharing in front-end development
 
 **命名规范**
@@ -72,7 +84,7 @@ render(
 
 > 总结: 存在的问题，calss name 太长
 
-### 3. Css module
+### 2. Css module
 
 [阮大大文章](http://www.ruanyifeng.com/blog/2016/06/css_modules.html)
 
