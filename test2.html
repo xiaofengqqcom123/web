@@ -1,0 +1,37 @@
+<html>
+  <style>
+    section {
+        height: 150px;
+    }
+    .box {
+    background-color: rgb(224, 206, 247);
+    border: 5px solid rebeccapurple;
+    }
+
+    .float {
+    float: left;
+    overflow: hidden; /* resize:both 所必需的样式 */
+    resize: both;
+    margin-right: 25px;
+    width: 200px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid black;
+    padding: 10px;
+    }
+
+</style>
+<section>
+    <div class="float">试试重新调整这个外部浮动元素的大小</div>
+    <div class="box"><p>普通</p></div>
+  </section>
+  <section>
+    <div class="float">试试重新调整这个外部浮动元素的大小</div>
+    <div class="box" style="display:flow-root">
+      <p><code>display:flow-root</code></p>
+      <p></p>
+    </div>
+  </section>
+  
+</html>
+  

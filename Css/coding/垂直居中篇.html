@@ -1,0 +1,139 @@
+<!-- 本文主要是介绍如何实现垂直居中 -->
+<!-- 垂直居中 -->
+
+<!-- 1. flex -->
+<!-- <html>
+  <style>
+    .father {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid greenyellow;
+      width: 200px;
+      height: 200px;
+    }
+    .test {
+        width: 100px;
+        height: 100px;
+        border: 1px solid red;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="test">test1</div>
+    </div>
+  </body>
+</html> -->
+
+<!-- 2. margin-top: 百分比 -->
+<!-- <html>
+  <style>
+    .father {
+      border: 1px solid greenyellow;
+      width: 200px;
+      height: 200px;
+    }
+    .test {
+        /* 注意：margin 的百分比也是相对于父元素来说的 */
+        margin-top: calc(50% - 50px);
+        width: 100px;
+        height: 100px;
+        border: 1px solid red;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="test">test1</div>
+    </div>
+  </body>
+</html> -->
+
+<!-- 3. 定位 -->
+<!-- <html>
+  <style>
+    .father {
+      border: 1px solid greenyellow;
+      width: 200px;
+      height: 200px;
+      position: relative;
+    }
+    .test {
+        position: absolute;
+        top: calc(50% - 50px);
+        width: 100px;
+        height: 100px;
+        border: 1px solid red;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="test">test1</div>
+    </div>
+  </body>
+</html> -->
+
+<!-- 4.transform: 注意translate的参数是相对于自身的（一般情况下这种场景是不会形成新的层叠上下文的） -->
+
+<!-- <html>
+  <style>
+    .father {
+      border: 1px solid greenyellow;
+      width: 300px;
+      height: 300px;
+    }
+    .test {
+        transform: translate(100%, 100%);
+        width: 100px;
+        height: 100px;
+        border: 1px solid red;
+    }
+  </style>
+  <body>
+    <div class="father">
+      <div class="test">test1</div>
+    </div>
+  </body>
+</html> -->
+
+<!-- 5. table-cell + vertical-align -->
+<!-- <html>
+  <style>
+    .father {
+      border: 1px solid greenyellow;
+      width: 300px;
+      height: 200px;
+      /* table-cell + vertical-align  适用于元素、文本*/
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .test {
+        width: 100px;
+        height: 100px;
+        border: 1px solid red;
+
+    }
+  </style>
+  <body>
+    <div class="father">
+        <div class="test">test1</div>
+    </div>
+  </body>
+</html> -->
+
+<!-- 5. 文本(inline-block 元素)垂直对齐 -->
+<html>
+  <style>
+    .father {
+      border: 1px solid greenyellow;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div class="father">
+        路
+    </div>
+  </body>
+</html>
+
