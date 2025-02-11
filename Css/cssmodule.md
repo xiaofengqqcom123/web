@@ -53,6 +53,10 @@ render(
 ```
 
 参考：https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b
+
+<img src="./assets/css-in-js.webp" width="400">
+
+
 ### 优点
 #### 1.局部作用于样式(Locally-scoped styles)
 
@@ -80,7 +84,7 @@ jsx<div css={{ padding: '0.5rem', border: '1px solid #ddd' }}>...</div>
 一种更好的代码组织方法是，将与单个组件相关的所有内容都放在同一个地方
 > 注意：CSS module 也允许你将样式与组件同地放置，尽管不是在同一个文件中
 
-#### You can use JavaScript variables in styles
+#### 3. You can use JavaScript variables in styles
 你可以使用 js 变量在样式里
 ```
 
