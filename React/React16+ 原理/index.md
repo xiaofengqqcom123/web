@@ -119,14 +119,15 @@ const VitrualDom = {
 当我们需要创建或更新元素时，React 首先会让这个虚拟 dom 对象进行创建和更改，然后再将虚拟 dom 对象渲染成真实DOM；当我们需要对DOM进行事件监听时，首先对VitrualDom进行事件监听，VitrualDom会代理原生的DOM事件从而做出响应。
 <img src="./assets/virtual.jpg" />
 
-- 为什么需要虚拟 dom？
+#### 为什么需要虚拟 dom？
+
 真实 dom 的渲染成本很高（[dom 操作为什么耗时](https://peterchen1997.github.io/Frontend-Repo/nav.07.HTML/01-%E6%A0%87%E5%87%86/DOM%E6%93%8D%E4%BD%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%80%97%E6%97%B6.html#dom%E6%93%8D%E4%BD%9C%E5%8E%9F%E7%90%86)），一次改动引发 dom 树的重新计算布局和重绘可能数百毫秒甚至达到秒级（与dom树深度和节点树相关）。 所以通过将虚拟 dom 和 Diff 算法相结合，减少不必要的多次重新渲染，得到较好的渲染性能，同时一致性也可以有较好的保证。
 此外虚拟 dom 还有以下优势：
   - 简单方便：如果使用手动操作真实 dom 来完成页面，在大规模应用下维护起来也很困难
   - 跨平台：React 借助虚拟 dom，带来了跨平台的能力，一套代码多端运行
 当然也有一些缺点，比如首次渲染大量 dom 时，由于多了一层虚拟 dom 的计算，速度比正常稍慢
 
-- 虚拟 dom 是怎么生成的？
+#### 虚拟 dom 是怎么生成的？
 每一个虚拟 dom 在内存中是一个 ReactElement，通过createElement创建，调用该方法需要传入三个参数：
 - type
 - config
@@ -198,24 +199,32 @@ React 16 引入的一个新概念 Fiber，为什么引入这个概念呢？
 7. 到这时以上的六个阶段都已经完成了，接下来处于空闲阶段，可以在这时执行 requestIdleCallback 里注册的任务（后面会详细讲到这个 requestIdleCallback ，它是 React Fiber 实现的基础）
 
 - requestAnimationFrame
+
 在 Fiber 中使用到了，它是浏览器提供的绘制动画的 api 。它要求浏览器在下次重绘之前调用指定的回调函数更新动画。
+
 - requestIdleCallback 
+
 Fiber 实现的基础 api ，说明有多余的空闲时间，此时就会执行requestIdleCallback 里注册的任务。
+
 <img src="./assets/filber2.png" />
 
 React 15.x 及以前的 Stack Reconcilation，每次更新需要对比新旧虚拟 DOM 树的操作，找出需要更新的内容（patch），通过打补丁的方式更新真实 DOM 树，当要对比的组件树非常多时，就会发生大量的新旧节点对比，这期间react 会一直占用浏览器资源，会导致用户触发的事件得不到响应。当耗时大大超过 16.6ms时，用户会感觉到明显的卡顿。这一系列操作是通过递归的方式实现的，是 同步且不可中断 的。因为一旦中断，调用栈就会被销毁，中间的状态就丢失了。
 
 React 16 引入 的 Fiber Reconcilation，的一个重点工作就是优化更新组件时大量的 CPU 计算，使用 “时间分片” 的方案，就是将原本要一次性做的工作，拆分成一个个异步任务，在浏览器空闲的时间时执行。
 
-**什么是 Fiber**
+### 什么是 Fiber
 Fiber 可以理解为是一个执行单元，也可以理解为是一种数据结构。
-一个执行单元
+
+**一个执行单元**
 每次执行完一个执行单元，React 就会检查现在还剩多少时间，如果没有时间则将控制权让出去。React Fiber 与浏览器的核心交互流程如下：
+
 <img src="./assets/filber3.png" />
 Fiber 可以被理解为划分一个个更小的执行单元，它是把一个大任务拆分为了很多个小块任务，一个小块任务的执行必须是一次完成的，不能出现暂停，但是一个小块任务执行完后可以移交控制权给浏览器去响应用户，从而不用像之前一样要等那个大任务一直执行完成再去响应用户。
 
-一种数据结构
+**一种数据结构**
+
 React Fiber 就是采用链表实现的。每个 Virtual DOM 都可以表示为一个 Fiber，一个 Fiber 节点定义如下：
+```
 function FiberNode(
   this: $FlowFixMe,
   tag: WorkTag,
@@ -237,7 +246,10 @@ function FiberNode(
   
   ... // 略去其他
   }
+
+  ```
 一个 DOM 对应 fiber 树结构如下：
+```
 <div>
     <h1>
         <p/>
@@ -245,46 +257,54 @@ function FiberNode(
     </h1>
     <h2/>
  </div>
-
-[图片]
+```
+<img src="./assets/filber4.png" />
    
-渲染原理
-Reconciler 做了哪些事？
-推荐阅读：走进React Fiber的世界 - 掘金
+## 渲染原理
+### Reconciler 做了哪些事？
+
+> 推荐阅读：[走进React Fiber的世界 - 掘金](https://juejin.cn/post/6943896410987659277)
 此阶段会找出所有节点的变更，如节点新增、删除、属性变更等，这些变更 react 统称为副作用（effect），此阶段会构建一棵Fiber tree，以虚拟dom节点为维度对任务进行拆分，即一个虚拟dom节点对应一个任务，最后产出的结果是effect list，从中可以知道哪些节点更新、哪些节点增加、哪些节点删除了。
-[图片]
+
+<img src="./assets/reconciler.png" />
+
 当数据更新触发组件更新时，出发一次render + commit 阶段（优先级调度本文不展开）
-Render 
-双缓存Fiber树
+### Render 
+#### 双缓存Fiber树
 当我们用 canvas 绘制动画，每一帧绘制前都会调用 ctx.clearRect 清除上一帧的画面。如果当前帧画面计算量比较大，导致清除上一帧画面到绘制当前帧画面之间有较长间隙，就会出现白屏。
 为了解决这个问题，我们可以在内存中绘制当前帧动画，绘制完毕后直接用当前帧替换上一帧画面，由于省去了两帧替换间的计算时间，不会出现从白屏到出现画面的闪烁情况。这种在内存中构建并直接替换的技术叫做双缓存。
 React 使用“双缓存”来完成 Fiber树 的构建与替换——对应着DOM树的创建与更新。
 
-在 React 中最多会同时存在两棵 Fiber 树。当前屏幕上显示内容对应的 Fiber 树称为 current Fiber树（树上节点称为 current fiber），正在内存中构建的 Fiber 树称为 workInProgress Fiber树（树上节点称为workInProgress fiber），两棵树上的节点通过 alternate 属性连接。
+在 React 中最多会同时存在**两棵 Fiber 树**。当前屏幕上显示内容对应的 Fiber 树称为 **current Fiber树**（树上节点称为 current fiber），正在内存中构建的 Fiber 树称为 **workInProgress Fiber树**（树上节点称为workInProgress fiber），两棵树上的节点通过 alternate 属性连接。
 
+```
 function App() {
     const [num, add] = useState(0);
     return (<p onClick={() => add(num + 1)}>{num}</p>)
 }
 
 ReactDOM.render(<App/>, document.getElementById('root'));
-首次执行 ReactDOM.render 会创建 fiberRootNode 和 rootFiber。其中 fiberRootNode 是整个应用的根节点，rootFiber 是<App/>所在组件树的根节点。
+```
+首次执行 ReactDOM.render 会创建 fiberRootNode 和 rootFiber。其中 fiberRootNode 是整个应用的根节点，rootFiber 是<App \/> 所在组件树的根节点。
 
-[图片]
+<img src="./assets/render1.png" />
+
 接下来进入 render 阶段，根据组件返回的JSX在内存中依次创建 Fiber 节点并连接在一起构建 Fiber 树，被称为workInProgress Fiber树。构建时会尝试复用current Fiber树中已有的Fiber节点内的属性。
 
-[图片]
+<img src="./assets/render2.png" />
 
 图中右侧已构建完的 workInProgress Fiber树在commit阶段渲染到页面。fiberRootNode的current指针指向workInProgress Fiber树使其变为current Fiber 树。
 
-[图片]
+<img src="./assets/render3.png" />
 update时，我们点击p节点触发状态改变，这会开启一次新的render阶段并构建一棵新的workInProgress Fiber 树，可以复用 current Fiber树对应的节点数据，这个决定是否复用的过程就是Diff算法。
 
-[图片]
-[图片]
-Render 阶段
+<img src="./assets/render4.png" />
+<img src="./assets/render5.png" />
+
+#### Render 阶段
 “递”阶段，首先从rootFiber开始向下深度优先遍历。为遍历到的每个Fiber节点调用beginWork方法。该方法会根据创建子Fiber节点，并将这两个Fiber节点连接起来。当遍历到叶子节点（即没有子组件的组件）时就会进入“归”阶段。 
 “归”阶段，会调用completeWork处理Fiber节点。当某个Fiber节点执行完completeWork，如果其存在兄弟Fiber节点（即fiber.sibling !== null），会进入其兄弟Fiber的“递”阶段。如果不存在兄弟Fiber，会进入父级Fiber的“归”阶段。
+```
 function App() {return (
     <div>
       i am
@@ -292,6 +312,8 @@ function App() {return (
     </div>)
 }
 ReactDOM.render(<App />, document.getElementById("root"));
+```
+
 对应的Fiber树结构： 
 [图片]
 render阶段会依次执行：
@@ -334,7 +356,7 @@ commit 共分为 3 个阶段：before mutation、mutation、layout
 - layout 阶段，处理 DOM 渲染完毕之后的收尾逻辑。比如 调用 componentDidMount/componentDidUpdate，还会把 fiberRoot 的 current 指针指向 workInProgress Fiber 树。
 commit 阶段 是一个 绝对同步的过程。render 阶段可以同步也可以异步。
 
-Diff 算法的实现
+## Diff 算法的实现
 diff 算法可以帮助我们计算出虚拟 DOM 中真正变化的部分，并只针对该部分进行实际的 DOM 操作，而非渲染整个页面，从而保证了每次操作后页面的高效渲染。
 React 提出了三个前提，最终时间复杂度从 O(n3) 降为 O(n)：
 1. 只对同级比较，跨层级的 DOM 不进行复用，因为 Web UI 中 DOM 节点跨层级的移动操作特别少
@@ -363,6 +385,7 @@ React 提出了三个前提，最终时间复杂度从 O(n3) 降为 O(n)：
 Diff算法的本质是对比1和3，生成2，即 dom-diff 是老 fiber 树跟新 jsx 的对比，生成新的 fiber 树的过程
 
 我们从Diff的入口函数 reconcileChildFibers 出发，该函数会根据newChild（即JSX对象）类型调用不同的处理函数。
+```
 // 根据newChild类型选择不同diff函数处理
 function reconcileChildFibers(
     returnFiber: Fiber,
@@ -396,8 +419,10 @@ function reconcileChildFibers(
     // 以上都没有命中，删除节点
     return deleteRemainingChildren(returnFiber, currentFirstChild);
   }
+  ```
 我们可以从同级的节点数量将Diff分为两类：
 1. 当newChild类型为object、number、string，代表同级只有一个节点，比如：
+```
 // 旧
 <div>
    <h1 key="h1">h1</h1>
@@ -418,7 +443,9 @@ function reconcileChildFibers(
 <div>
    <Hello>lili</Hello>
 </div>
+```
 2. 当newChild类型为Array，同级有多个节点，比如
+```
 //老
 <ul>
   <li key="A">A</li>
@@ -444,10 +471,12 @@ function reconcileChildFibers(
    <Hello>lili</Hello>
    <World>lili</World>
 </div>
+```
 在接下来两节我们会分别讨论这两类节点的Diff。
 
-单节点 Diff
+### 单节点 Diff
 源码参见：reconcileSingleElement
+```
 function reconcileSingleElement(
     returnFiber: Fiber,
     currentFirstChild: Fiber | null,
@@ -490,10 +519,12 @@ function reconcileSingleElement(
     }
     // 创建新Fiber，并返回 ...省略
   }
+```
 从代码可以看出，React通过先判断key是否相同，如果key相同则判断type是否相同，只有都相同时一个DOM节点才能复用。
 这里有个细节需要关注下：
 - 当 child !== null 且 key 相同 且 type 不同 时执行deleteRemainingChildren将 child 及其兄弟 fiber 都标记删除（左例）
 - 当 child !== null 且 key不同 时仅将 child 标记删除（右例，比较到 h1 只会把 h1 标记删除，继续遍历）
+```
 // 旧
 <div>
    <h1 key="h1">h1</h1>
@@ -515,9 +546,12 @@ function reconcileSingleElement(
 <div>
    <h2 key="h2">h2</h2>
 </div>
-多节点 Diff
+```
+
+### 多节点 Diff
 同级多个节点的Diff，一定属于以下三种情况中的一种或多种：
 情况1：节点更新
+```
 // 旧
 <ul>
   <li key="0" className="before">0<li>
@@ -568,7 +602,7 @@ function reconcileSingleElement(
   <li key="1">1<li>
   <li key="0">0<li>
 </ul>
-
+```
 React团队发现，在日常开发中，相较于新增和删除，更新组件发生的频率更高，所以 Diff 会优先判断当前节点是否属于更新。
 当数组遇上单链表
 在我们做数组相关的算法题时，经常使用双指针从数组头和尾同时遍历以提高效率，但是这里却不行。
@@ -576,6 +610,7 @@ React团队发现，在日常开发中，相较于新增和删除，更新组件
 即 newChildren[0] 与 fiber 比较，newChildren[1]与 fiber.sibling 比较。
 所以无法使用双指针优化。
 reconcileChildFibers的newChild参数类型为Array
+```
 function List () {
     return (
         <ul>
@@ -586,6 +621,8 @@ function List () {
         </ul>
     )
   }
+
+```
 [图片]
 基于以上原因，Diff算法的整体逻辑会经历两轮遍历：
 第一轮遍历：处理更新的节点。
@@ -613,6 +650,7 @@ function List () {
 第一个节点可复用，遍历到key === 2的节点发现key改变，不可复用，跳出遍历，等待第二轮遍历处理。
 此时oldFiber剩下key === 1、key === 2未遍历，newChildren剩下key === 2、key === 1未遍历。
 2. newChildren遍历完，或oldFiber遍历完，或他们同时遍历完，例如：
+```
 // 之前
 <li key="0" className="a">0</li>
 <li key="1" className="b">1</li>
@@ -630,7 +668,7 @@ function List () {
 // 之后 情况3 —— newChildren遍历完，oldFiber没遍历完
 // oldFiber剩下 key==="1" 未遍历
 <li key="0" className="aa">0</li>
-
+```
 第二轮遍历分3种情况：
 - newChildren 没遍历完，oldFiber 遍历完
   已有的 DOM 节点都复用了，这时还有新加入的节点，意味着本次更新有新节点插入，我们只需要遍历剩下的newChildren生成的workInProgress fiber依次标记 Placement。
