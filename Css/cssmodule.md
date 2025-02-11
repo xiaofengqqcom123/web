@@ -51,6 +51,8 @@ render(
   </div>
 )
 ```
+
+参考：https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b
 ### 优点
 #### 1.局部作用于样式(Locally-scoped styles)
 
@@ -118,9 +120,9 @@ The worst thing about this problem is that it's not a fixable issue (within the 
 
 我在服务器端渲染中使用 Emotion，并且搭配 MUI / 曼廷（Mantine）/（另一个基于 Emotion 的组件库），但它无法正常工作，原因是……
 虽然每个问题的根本原因各不相同，但存在一些共同之处：
-> 同时加载多个 Emotion 实例。即使这些多个实例都是相同版本的 Emotion，也可能引发问题。
-> 组件库通常不会让你完全控制样式插入的顺序。
-> Emotion 对 React 17 和 React 18 的服务器端渲染支持方式有所不同。这是为了兼容 React 18 的流式服务器端渲染所必需的。
+> - 同时加载多个 Emotion 实例。即使这些多个实例都是相同版本的 Emotion，也可能引发问题。
+> - 组件库通常不会让你完全控制样式插入的顺序。
+> - Emotion 对 React 17 和 React 18 的服务器端渲染支持方式有所不同。这是为了兼容 React 18 的流式服务器端渲染所必需的。
 
 相信我，这些复杂问题只是冰山一角。（如果你有勇气，可以看看@emotion/styled的 TypeScript 定义。）
 
