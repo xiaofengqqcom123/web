@@ -1,82 +1,13 @@
 <html>
-    <style>
-      .father {
-        /* display: flex;
-        flex-wrap: wrap; */
-        border: 1px solid greenyellow;
-        overflow: hidden;
-        width: 100%;;
-      }
-        .test {
-            width: 400px;
-            height: 100px;
-            max-width: 500px;
-            border: 1px solid green;
-            margin: 10px;
-            overflow: hidden;
-        }
+<style>
+</style>
 
-        .test1 {
-          float: left;
-          width: 400px;
-          visibility: hidden;
-          height: 100px;
-            max-width: 500px;
-            border: 1px solid red;
-            margin: 10px;
-        }
-    </style>
+<div class="father">
+  <div class="test1">float left</div>
+  <div class="test">test1</div>
+</div>
 
-    <div class="father">
-        <div class="test1">float left</div>
-        <div class="test">test1</div>
-    </div>
-    
 </html>
 <script>
-
-// function work(a, b) {
-//   // alert(a + b); // work 是一个任意的函数或方法
-//   console.log(a + b);
-// }
-
-// function spy(fun) {
-//   return function wrapper(...args) {
-//     if(Array.isArray(wrapper.calls) ) {
-//         wrapper.calls.push(args)
-//     } else {
-//         wrapper.calls = [args]
-//     }
-//     console.log('this===', this);
-//     return fun.call(this, ...args);
-//   };
-// }
-
-// let workd = spy(work);
-
-// workd(1, 2); // 3
-// workd(4, 5); // 9
-
-// console.log('work===', workd.calls);
-// for (let args of workd.calls) {
-//   console.log(args);
-//   alert(args + 'call:' + args.join()); // "call:1,2", "call:4,5"
-// }
-
-
-new Promise((resolve, reject) => {
-  console.log('1');
-  setTimeout(() => {
-    console.log('3');
-  }, 0);
-  resolve();
-  console.log('4');
-}).then(() => {
-  console.log('2');
-});
-
-// function Promise (excutor) {
-//     return (resove, reject) => {}
-// }
 
 </script>

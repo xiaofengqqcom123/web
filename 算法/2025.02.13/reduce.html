@@ -1,0 +1,29 @@
+<html>
+<style>
+</style>
+
+<div class="father">
+    <div class="test1">float left</div>
+    <div class="test">test1</div>
+</div>
+
+</html>
+<script>
+    let arr = [];
+    for (let i = 0; i < 2; i++) {
+        arr.push(function test(finish) {
+            console.log(i);
+
+            return function () {
+                finish();
+            }
+        });
+    }
+
+    var func = arr.reduce(function (pre, cur) {
+        console.log('pre==', pre);
+        console.log('cur==', cur);
+        return cur(pre)
+    });
+    func();
+</script>
