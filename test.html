@@ -27,33 +27,36 @@
 
   // console.log('getCount(10)===', getCount(100))
 
-  var productExceptSelf = function (nums) {
-    let target = 1;
-    let zeroNum = 0;
-
-    nums.forEach(element => {
-      if (element !== 0) {
-        target *= element
-      } else {
-        zeroNum += 1;
-      }
-
-    });
-
-    return nums.map(item => {
-      if (item === 0) {
-        if (zeroNum > 1) {
-          return 0
+  function isBig(arr) {
+    for (let i = 0; i < arr.length - 2; i++) {
+      for (let j = i + 1; j < arr.length - 1; j++) {
+        if (arr[j] > arr[i]) {
+          return true;
         }
-        return target
-      } else {
-        if (zeroNum) {
-          return 0
-        }
-        return target / item
       }
+    }
 
-    })
+    return false
+  }
+
+
+  var increasingTriplet = function (nums) {
+    for (let i = 0; i < nums.length - 3; i++) {
+      let first = nums[i];
+
+      for (let j = i + 1; j < nums.length - 2; i++) {
+        if (nums[j] > first) {
+          let second = nums[j];
+          for (let z = j + 1; z < nums.length; z++) {
+            if (nums[z] > second) {
+              true;
+            }
+          }
+        }
+      }
+    }
+
+    return false
   };
 
 </script>
