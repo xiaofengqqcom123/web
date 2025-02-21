@@ -9,96 +9,40 @@
 
 </html>
 <script>
-  // function getCount(n) {
-  //   const arr = []
-  //   for (let i = 2; i <= n; i++) {
 
-  //     for (let j = 2; j <= i; j++) {
-  //       if (i % j === 0 && i !== j) {
-  //         break;
-  //       } else if (i === j) {
-  //         arr.push(j)
+  // [2, 3, 4, 6, 8, 9, 12] -> ["2-4", "6", "8-9", "12"]
+
+  // function handleArr( initArr) {
+  //   let arr = [...initArr]
+  //   const targetArr = [];
+  //   let current = [];
+
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (current.length) {
+  //       const first = current[0];
+  //       const end = current[current.length - 1]
+
+  //       if (arr[i] === end + 1) {
+  //         current.push(arr[i])
+  //       } else {
+  //         targetArr.push(`${first}-${end}`)
+  //         targetArr.push(`${arr[i]}`)
+  //         current = []
   //       }
+
+
+  //     } else if (arr[i] + 1 === arr[i + 1]) {
+  //       current.push(arr[i])
+  //     } else {
+  //       targetArr.push(`${arr[i]}`)
   //     }
+
+
   //   }
 
-  //   return arr;
+  //   return targetArr;
   // }
 
-  // console.log('getCount(10)===', getCount(100))
-
-  // function isBig(arr) {
-  //   for (let i = 0; i < arr.length - 2; i++) {
-  //     for (let j = i + 1; j < arr.length - 1; j++) {
-  //       if (arr[j] > arr[i]) {
-  //         return true;
-  //       }
-  //     }
-  //   }
-
-  //   return false
-  // }
-
-
-  // var increasingTriplet = function (nums) {
-  //   for (let i = 0; i < nums.length - 3; i++) {
-  //     let first = nums[i];
-
-  //     for (let j = i + 1; j < nums.length - 2; i++) {
-  //       if (nums[j] > first) {
-  //         let second = nums[j];
-  //         for (let z = j + 1; z < nums.length; z++) {
-  //           if (nums[z] > second) {
-  //             true;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-
-  //   return false
-  // };
-
-  // async function test() {
-  //   for (var i = 0; i < 10; i++) {
-  //     console.log('start', i)
-  //     await new Promise((resolve, reject) => {
-  //       setTimeout(() => { resolve(), 1000 })
-  //     })
-
-  //     console.log('end', i)
-  //   }
-  // }
-
-  // test()
-
-
-    // function getCount(initConins, amount) {
-    //     let obj = {};
-    //     let sum = 0;
-    //     const coins = initConins.sort((a, b) => a - b);
-
-    //     console.log('conins==', coins)
-
-    //     while (sum < amount && coins.length > 0) {
-    //         let max = coins.pop();
-    //         if (amount - sum >= max) {
-    //             let count = Math.floor((amount - sum) / max);
-    //             obj[max] = count;
-    //             sum = sum + count * max;
-
-    //             if (sum === amount) {
-    //                 return obj
-    //             }
-    //         }
-
-    //     }
-
-    //     return obj;
-
-    // }
-
-    // let a = getCount([1, 2, 5], 11);
-
-    // console.log('s====', a)
+  // const target = handleArr([2, 3, 4, 6, 8, 9, 12])
+  // console.log('target===', target)
 </script>
