@@ -4,7 +4,7 @@
 
 </html>
 <script>
-    // var 的考察
+    // 第一题：var 的考察
     // for (var i = 0; i < 2; i++) {
     //     setTimeout(() => {
     //         // 闭包
@@ -12,6 +12,7 @@
     //     }, 1000)
     //     console.log('i===', i)
     // }
+
     // 为什么打印值不同？
     // 因为 var 是函数作用域，而 setTimeout 是异步任务，所以会先执行 for 循环，然后再执行 setTimeout，所以会打印 2 次 2
     // 因为 var 是函数作用域，所以 i 的值会被保存下来，所以会打印 2 次 2
@@ -34,20 +35,19 @@
     //     i++
     // }
 
-    // 注意：for 循环外，依然是可以打印出 var i 的值
+    // 注意：for 循环外，依然是可以打印出 var i 的值.
     // console.log('i===', i)
 
-    // let 有了块级作用域， 在 for 循环中使用 let 声明变量 i 时，每次循环迭代都会创建一个新的 i 变量副本。
+    // 但是打印 let 的值却报错
     // for (let i = 0; i < 2; i++) {
-    //     setTimeout(() => {
-    //         // 闭包
-    //         console.log(i)
-    //     }, 1000)
+    //     // console.log('i===', i)
     // }
     // console.log('i===', i) // 报错，i is not defined
 
 
-    // 写法1
+
+    // ---------------------------------------------
+    // 第二题：let 的考察
     // for (let i = 0; i < 2; i++) {
     //     setTimeout(() => {
     //         // 闭包
@@ -73,13 +73,14 @@
 
 
     // 写法3
-   // let i;
+    // let i;
     // for (i = 0; i < 2; i++) {
     //     setTimeout(() => {
     //         // 闭包
     //         console.log(i)
     //     }, 1000)
     // }
+
 
 
 

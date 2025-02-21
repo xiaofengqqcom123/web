@@ -27,36 +27,78 @@
 
   // console.log('getCount(10)===', getCount(100))
 
-  function isBig(arr) {
-    for (let i = 0; i < arr.length - 2; i++) {
-      for (let j = i + 1; j < arr.length - 1; j++) {
-        if (arr[j] > arr[i]) {
-          return true;
-        }
-      }
-    }
+  // function isBig(arr) {
+  //   for (let i = 0; i < arr.length - 2; i++) {
+  //     for (let j = i + 1; j < arr.length - 1; j++) {
+  //       if (arr[j] > arr[i]) {
+  //         return true;
+  //       }
+  //     }
+  //   }
 
-    return false
-  }
+  //   return false
+  // }
 
 
-  var increasingTriplet = function (nums) {
-    for (let i = 0; i < nums.length - 3; i++) {
-      let first = nums[i];
+  // var increasingTriplet = function (nums) {
+  //   for (let i = 0; i < nums.length - 3; i++) {
+  //     let first = nums[i];
 
-      for (let j = i + 1; j < nums.length - 2; i++) {
-        if (nums[j] > first) {
-          let second = nums[j];
-          for (let z = j + 1; z < nums.length; z++) {
-            if (nums[z] > second) {
-              true;
-            }
-          }
-        }
-      }
-    }
+  //     for (let j = i + 1; j < nums.length - 2; i++) {
+  //       if (nums[j] > first) {
+  //         let second = nums[j];
+  //         for (let z = j + 1; z < nums.length; z++) {
+  //           if (nums[z] > second) {
+  //             true;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
 
-    return false
-  };
+  //   return false
+  // };
 
+  // async function test() {
+  //   for (var i = 0; i < 10; i++) {
+  //     console.log('start', i)
+  //     await new Promise((resolve, reject) => {
+  //       setTimeout(() => { resolve(), 1000 })
+  //     })
+
+  //     console.log('end', i)
+  //   }
+  // }
+
+  // test()
+
+
+    // function getCount(initConins, amount) {
+    //     let obj = {};
+    //     let sum = 0;
+    //     const coins = initConins.sort((a, b) => a - b);
+
+    //     console.log('conins==', coins)
+
+    //     while (sum < amount && coins.length > 0) {
+    //         let max = coins.pop();
+    //         if (amount - sum >= max) {
+    //             let count = Math.floor((amount - sum) / max);
+    //             obj[max] = count;
+    //             sum = sum + count * max;
+
+    //             if (sum === amount) {
+    //                 return obj
+    //             }
+    //         }
+
+    //     }
+
+    //     return obj;
+
+    // }
+
+    // let a = getCount([1, 2, 5], 11);
+
+    // console.log('s====', a)
 </script>
