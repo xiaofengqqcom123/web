@@ -45,4 +45,25 @@
 
   // const target = handleArr([2, 3, 4, 6, 8, 9, 12])
   // console.log('target===', target)
+
+
+  function fun(arr) {
+    const beforeArrMin = [arr[0]];
+    const afterArrMax = [arr[arr.length - 1]];
+
+    for (let i = 1; i < arr.length - 1; i++) {
+      let beforeArr = arr.slice(0, i);
+      let endArr = arr.slice(i + 1);
+
+      if (arr[i] < beforeArrMin[])
+
+        if (Math.min(...beforeArr) < arr[i] && arr[i] < Math.max(...endArr)) {
+          return true
+        }
+    }
+    return false;
+  }
+
+  const a = fun([1, 8, 5, 7, 8])
+  console.log('a====', a)
 </script>
