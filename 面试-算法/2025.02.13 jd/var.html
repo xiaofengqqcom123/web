@@ -1,0 +1,100 @@
+<!-- 京东面试题 -->
+<html>
+<div> 总结梳理京东的面试题, 并记录自己的理解 </div>
+
+</html>
+<script>
+    // 第一题：var 的考察
+    // for (var i = 0; i < 2; i++) {
+    //     setTimeout(() => {
+    //         // 闭包
+    //         console.log(i)
+    //     }, 1000)
+    //     console.log('i===', i)
+    // }
+
+    // 为什么打印值不同？
+    // 因为 var 是函数作用域，而 setTimeout 是异步任务，所以会先执行 for 循环，然后再执行 setTimeout，所以会打印 2 次 2
+    // 因为 var 是函数作用域，所以 i 的值会被保存下来，所以会打印 2 次 2
+
+    // 写法类似于下面的代码
+    // var i = 0;
+    // // 如果条件为真，运行下一步
+    // if (i < 2) {
+    //     setTimeout(function () {
+    //         console.log(i);
+    //     }, 100);
+    //     i++
+    // }
+
+    // // 如果条件为真，运行下一步
+    // if (i < 2) {
+    //     setTimeout(function () {
+    //         console.log(i);
+    //     }, 100);
+    //     i++
+    // }
+
+    // 注意：for 循环外，依然是可以打印出 var i 的值.
+    // console.log('i===', i)
+
+    // 但是打印 let 的值却报错
+    // for (let i = 0; i < 2; i++) {
+    //     // console.log('i===', i)
+    // }
+    // console.log('i===', i) // 报错，i is not defined
+
+
+
+    // ---------------------------------------------
+    // 第二题：let 的考察
+    // for (let i = 0; i < 2; i++) {
+    //     setTimeout(() => {
+    //         // 闭包
+    //         console.log(i)
+    //     }, 1000)
+    // }
+
+    // // 写法2
+    // let i = 0;
+    // if (i < 2) {
+    //     setTimeout(() => {
+    //         // 闭包
+    //         console.log(i)
+    //     }, 1000)
+    //     i++;
+    // }
+    // if (i < 2) {
+    //     setTimeout(() => {
+    //         // 闭包
+    //         console.log(i)
+    //     }, 1000)
+    // }
+
+
+    // 写法3
+    // let i;
+    // for (i = 0; i < 2; i++) {
+    //     setTimeout(() => {
+    //         // 闭包
+    //         console.log(i)
+    //     }, 1000)
+    // }
+
+
+
+
+
+    // 考题：
+    // for (let i = 0; i < 5; i++) {
+    //     // 创建图片元素
+    //     var img = document.createElement('img');
+    //     // 设置图片的 src 属性
+    //     img.src = `https://picsum.photos/200?random=${i}`;
+    //     // 将图片添加到 body 中
+    //     document.body.appendChild(img);
+    //     // 打印变量 i 的值
+    //     console.log(i);
+    // }
+
+</script>

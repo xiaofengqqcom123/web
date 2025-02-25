@@ -1,0 +1,64 @@
+<!-- 京东面试题 -->
+<html>
+<div> 总结梳理京东的面试题, 并记录自己的理解 </div>
+
+</html>
+<script>
+    // 1. 扁平化数组，例如：[1,2,[3,4,[5,6]]] => [1,2,3,4,5,6]
+
+    // function flatten(arr) {
+    //     const res = [];
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if(Array.isArray(arr[i])) {
+    //             res.push(...flatten(arr[i]))
+    //         } else {
+    //             res.push(arr[i])
+    //         }
+    //     }
+
+    //     return res;
+    // }
+
+    // console.log(flatten([1,2,[3,4,[5,6]]]))
+
+    // 2. 对数字进行千分位分割
+    // 123456789 => 123,456,789
+    // 123456789.123456 => 123,456,789.123456
+    // function formatNumber(num) {
+    //     const arr = []
+    //  let str = num.toString();
+
+    // 方式一：通过 while 循环实现
+
+
+    // while(str.length >= 3) {
+    //     arr.unshift(str.slice(-3))
+    //     str = str.slice(0, str.length - 3)
+    // }
+
+    // if(str.length < 3) {
+    //     arr.unshift(str)
+    // }
+    // return arr.join(',')
+
+    // }
+
+    // 方式二：for 循环实现
+    // function test(num) {
+    //   const str = num.toString();
+    //   const arr = [];
+
+
+    //   // 将其分组，放到数组中
+    //   for(let i = 0; i < str.length; i++) {
+    //     if( (i + 1) % 3 === 0) {
+    //       arr.unshift(str.slice(str[str.length - i - 3], str[str.length - i]))
+    //     }
+    //   }
+    //   return arr.join(',')
+    // }
+
+    // console.log(test(123456789))
+
+    // console.log(formatNumber(12345678))
+</script>

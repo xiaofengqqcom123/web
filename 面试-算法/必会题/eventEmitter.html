@@ -1,0 +1,54 @@
+<!-- 写一个倒计时的组件 -->
+<html>
+<div> </div>
+
+</html>
+<script>
+    class EventEmitter {
+        constructor() {
+            this.events = {}
+        }
+
+        on(eventName, fun) {
+            if (!this.events[eventName]) {
+                this.events[eventName] = [fun]
+            } else {
+                this.events[eventName].push(fun)
+            }
+        }
+
+        emitter(eventName) {
+            if (this.events[eventName]) {
+                this.events[eventName].forEach(element => {
+                    element()
+                });
+            }
+        }
+
+        off(eventName, fun) {
+            if (this.events[eventName]) {
+                this.events[eventName] = this.events[eventName].filter(element => {
+
+                    console.log('filter===', element !== fun)
+                    return element !== fun;
+
+                });
+            }
+        }
+    }
+
+    const myEvent = new EventEmitter()
+
+    function fun1() {
+        console.log('message1')
+    }
+
+    myEvent.on('message', fun1)
+    myEvent.on('message', function () {
+        console.log('message2')
+    })
+
+    myEvent.off('message', fun1);
+
+    myEvent.emitter('message')
+</script>
