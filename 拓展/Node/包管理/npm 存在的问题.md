@@ -1,3 +1,11 @@
+## 什么是幻影依赖？
+> 一个库使用了不属于其 dependencies 中声明的依赖。这个被称为幻影依赖(phantom dependency、幽灵依赖、隐式依赖)
+
+> 例如：
+> - 项目里引用了 package A, package A 使用了 lodash 作为依赖，但 lodash 不在项目 dependencies 中声明。此时项目中可以再不声明的情况下，直接使用 loadsh
+
+
+
 日常oncall碰到了很多关于pnpm以及幻影依赖的问题，有的问题比较复杂，涉及到了pnpm背后的实现原理，因此本文展开讲一讲pnpm的link机制。
 我们通常说pnpm的一大优点就是避免了幻影依赖，默认禁止了hoist，但是当我们说起hoist的时候，说的可能不是一回事，因为pnpm的hoist可能分为很多种情况。而且pnpm禁止不同hoist采取的策略也有所不同。
 我们就结合pnpm的link策略来看看不同hoist的表现行为。
@@ -28,3 +36,14 @@ node_modules/
    express
    .pnpm
 src/index.js
+
+
+## npm 分身 (NPM doppelgangers)
+有的情况下，node_modules 里会安装两遍相同的 npm 包，这一现象叫做 npm 分身。
+
+造成的问题是：会造成 node_modules 包体积增大的问题
+
+
+
+
+
