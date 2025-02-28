@@ -8,5 +8,23 @@
 
 </html>
 <script>
+    var maxDepth = function (root) {
+        if (root == null || !root.length) return 0;
 
+        debugger
+
+        let count = 0;
+        let sum = 0;
+
+        while (sum < root.length) {
+            sum += Math.pow(2, count);
+            count++;
+        }
+
+        return count;
+    };
+
+    const a = maxDepth([3, 9, 20, null, null, 15, 7])
+
+    console.log('a===', a)
 </script>
