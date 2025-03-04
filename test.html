@@ -1,69 +1,56 @@
 <html>
-<style>
-</style>
 
-<div class="father">
-  <div class="test1">float left</div>
-  <div class="test">test1</div>
-</div>
+<head>
+  <title>倒计时页面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    #countdown {
+      font-size: 48px;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>倒计时开始</h1>
+  <div id="countdown"></div>
+
+  <script>
+    // 设置倒计时的总秒数，这里设置为 60 秒，可以根据需要修改
+    const totalSeconds = 60;
+    let timeLeft = totalSeconds;
+
+    // 获取倒计时显示的元素
+    const countdownElement = document.getElementById('countdown');
+
+    // 定义更新倒计时的函数
+    function updateCountdown() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+
+      // 格式化时间显示
+      const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      countdownElement.textContent = formattedTime;
+
+      if (timeLeft > 0) {
+        // 如果时间还未结束，每秒减少 1 秒
+        timeLeft--;
+        // 每秒调用一次 updateCountdown 函数
+        setTimeout(updateCountdown, 1000);
+      } else {
+        // 时间结束后显示提示信息
+        countdownElement.textContent = '倒计时结束！';
+      }
+    }
+
+    // 开始倒计时
+    updateCountdown();
+  </script>
+</body>
 
 </html>
-<script>
-
-  // [2, 3, 4, 6, 8, 9, 12] -> ["2-4", "6", "8-9", "12"]
-
-  // function handleArr( initArr) {
-  //   let arr = [...initArr]
-  //   const targetArr = [];
-  //   let current = [];
-
-  //   for (let i = 0; i < arr.length; i++) {
-  //     if (current.length) {
-  //       const first = current[0];
-  //       const end = current[current.length - 1]
-
-  //       if (arr[i] === end + 1) {
-  //         current.push(arr[i])
-  //       } else {
-  //         targetArr.push(`${first}-${end}`)
-  //         targetArr.push(`${arr[i]}`)
-  //         current = []
-  //       }
-
-
-  //     } else if (arr[i] + 1 === arr[i + 1]) {
-  //       current.push(arr[i])
-  //     } else {
-  //       targetArr.push(`${arr[i]}`)
-  //     }
-
-
-  //   }
-
-  //   return targetArr;
-  // }
-
-  // const target = handleArr([2, 3, 4, 6, 8, 9, 12])
-  // console.log('target===', target)
-
-
-  function fun(arr) {
-    const beforeArrMin = [arr[0]];
-    const afterArrMax = [arr[arr.length - 1]];
-
-    for (let i = 1; i < arr.length - 1; i++) {
-      let beforeArr = arr.slice(0, i);
-      let endArr = arr.slice(i + 1);
-
-      if (arr[i] < beforeArrMin[])
-
-        if (Math.min(...beforeArr) < arr[i] && arr[i] < Math.max(...endArr)) {
-          return true
-        }
-    }
-    return false;
-  }
-
-  const a = fun([1, 8, 5, 7, 8])
-  console.log('a====', a)
-</script>

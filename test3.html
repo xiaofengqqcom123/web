@@ -8,23 +8,33 @@
 
 </html>
 <script>
-    var maxDepth = function (root) {
-        if (root == null || !root.length) return 0;
 
-        debugger
+    var combinationSum3 = function (k, n) {
+        const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-        let count = 0;
-        let sum = 0;
+        let allRes = []
 
-        while (sum < root.length) {
-            sum += Math.pow(2, count);
-            count++;
+        for (let i = 0; i < k; i++) {
+            if (allRes.length === 0) {
+                allRes = arr.map(item => ([item]))
+            } else {
+                const newRes = []
+                for (let j = 0; j < allRes.length; j++) {
+                    const target = allRes[j];
+
+                    const t = []
+                    arr.forEach(item => {
+                        if (!target.includes(item)) {
+                            t.push([...target, item])
+                        }
+                    })
+                    newRes.push(...t)
+                }
+
+                allRes = newRes
+            }
         }
-
-        return count;
+        console.log(allRes)
     };
-
-    const a = maxDepth([3, 9, 20, null, null, 15, 7])
-
-    console.log('a===', a)
+    combinationSum3(2, 4)
 </script>
