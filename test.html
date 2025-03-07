@@ -21,35 +21,150 @@
   <div id="countdown"></div>
 
   <script>
-    // 设置倒计时的总秒数，这里设置为 60 秒，可以根据需要修改
-    const totalSeconds = 60;
-    let timeLeft = totalSeconds;
 
-    // 获取倒计时显示的元素
-    const countdownElement = document.getElementById('countdown');
 
-    // 定义更新倒计时的函数
-    function updateCountdown() {
-      const minutes = Math.floor(timeLeft / 60);
-      const seconds = timeLeft % 60;
+    // var decodeString = function (s) {
+    //   let targetStr = '';
+    //   let index = 0;
+    //   let stack = []
 
-      // 格式化时间显示
-      const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      countdownElement.textContent = formattedTime;
+    //   function getIndex(start, str, target) {
+    //     for (let i = start; i < str.length; i++) {
+    //       if (str[i] === target) {
+    //         return i;
+    //       }
+    //     }
+    //   }
 
-      if (timeLeft > 0) {
-        // 如果时间还未结束，每秒减少 1 秒
-        timeLeft--;
-        // 每秒调用一次 updateCountdown 函数
-        setTimeout(updateCountdown, 1000);
-      } else {
-        // 时间结束后显示提示信息
-        countdownElement.textContent = '倒计时结束！';
+    //   function geyLetter(start, str) {
+    //     for (let i = start; i < str.length; i++) {
+    //       if (str[i] !== '[' && str[i] !== ']' && !Number.isFinite(Number(s[index]))) {
+    //         return i;
+    //       }
+    //     }
+    //   }
+
+    //   function transStr() {
+    //     while (index < s.length) {
+    //       if (Number.isFinite(Number(s[index]))) {
+    //         let end = getIndex(index + 1, s, '[');
+    //         let num = s.slice(index, end);
+    //         stack.push(num);
+    //         index = end + 1;
+
+    //         // for(let i = end; i < s.length; i++) {
+    //         //   if (s[i] === '[') {
+    //         //     end = i;
+    //         //     break;
+    //         //   }
+    //         // }
+
+    //         // let letterEnd = getIndex(end + 1, s, ']');
+    //         // let letter = s.slice(end + 1, letterEnd);
+    //         // targetStr += letter.repeat(num);
+
+    //         // index = letterEnd + 1;
+    //       } else if (s[index] === '[') {
+    //         stack.push('[');
+    //         index++;
+    //       } else if (s[index] === ']') {
+    //         stack.push(']');
+    //         index++;
+    //       } else {
+    //         const end = geyLetter(index, s)
+    //         const letter = s.slice(index, end);
+    //         stack.push(letter);
+    //         index = end;
+    //       }
+    //     }
+    //   }
+    //   transStr();
+    //   console.log('stack', stack);
+    // }
+
+
+
+    // console.log(decodeString("3[a2[c]]"));
+
+    // var deleteMiddle = function (head) {
+    //   if (!head || !head.next) {
+    //     return head;
+    //   }
+
+    //   let length = 0;
+    //   let cur = head;
+
+    //   // 计算链表的长度
+    //   while (cur) {
+    //     length++;
+    //     cur = cur.next;
+    //   }
+
+    //   const middle = Math.floor(length / 2);
+
+    //   let end = head;
+    //   let index = 0;
+
+    //   while (index < middle) {
+
+
+    //     if (index !== middle - 1) {
+    //       end = end.next;
+    //     } else {
+    //       end.next = end.next.next;
+    //     }
+    //     index++;
+    //   }
+    // };
+
+    function (n, k) {
+      let result = [];
+      let path = [];
+
+      function backtracking(startIndex) {
+        if (path.length === k) {
+          result.push([...path]);
+          return;
+        }
+
+        for (let i = startIndex; i <= n; i++) {
+          path.push(i);
+          backtracking(i + 1);
+          path.pop();
+        }
       }
+
+      backtracking(1);
+      return result;
     }
 
-    // 开始倒计时
-    updateCountdown();
+    function test(nums) {
+      let result = [[]];
+      let path = [];
+
+      for (let i = 1; i <= nums.length; i++) {
+
+        function t(start) {
+          if (path.length === i) {
+            result.push([...path]);
+            return;
+          }
+
+          for (let j = start; j < nums.length; j++) {
+            path.push(nums[j]);
+            t(j + 1);
+            path.pop();
+          }
+
+
+        }
+
+        t(0)
+      }
+
+      return result;
+    };
+
   </script>
 </body>
 

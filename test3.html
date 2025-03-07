@@ -8,33 +8,72 @@
 
 </html>
 <script>
+    // 用于画血缘的数据
+    const obj = {
+        id: '123',
+        name: '123',
+        parentId: '123',
+        children: [{
+            id: '123',
+            name: '123',
+            parentId: '123',
+        }, {
+            id: '234',
+            name: '234',
+            parentId: '123',
+            children: [{
+                id: 'test'
+            }]
+        }]
+    }
 
-    var combinationSum3 = function (k, n) {
-        const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // 用于搜索的数据
+    const searchArr = [{
+        id: '123',
+        name: '123',
+        parentId: '123',
+        children: [{
+            id: '123'
+        }]
+    }, {
+        id: '234',
+        name: '234',
+        parentId: '123',
+    }]
 
-        let allRes = []
 
-        for (let i = 0; i < k; i++) {
-            if (allRes.length === 0) {
-                allRes = arr.map(item => ([item]))
-            } else {
-                const newRes = []
-                for (let j = 0; j < allRes.length; j++) {
-                    const target = allRes[j];
+    // 搜索实现
+    function search(arr, name) {
+        // 搜索到的目标
+        const targetItem = searchArr.find(item => item.name === name);
 
-                    const t = []
-                    arr.forEach(item => {
-                        if (!target.includes(item)) {
-                            t.push([...target, item])
-                        }
-                    })
-                    newRes.push(...t)
+        const targetObj = { targetItem }
+
+        // 生成搜索的数据血缘图
+        function searchData(item) {
+            // 生成子节点
+            if (item.children) {
+                item.children = item.children.map(child => {
+                    return searchData(child)
+                })
+            }
+
+        }
+
+        function findParent(item) {
+            // 生成父节点
+            if (item.parentId) {
+                const parent = searchArr.find(parent => parent.id === item.parentId);
+                if (parent) {
+                    item.parent = findParent(parent);
                 }
-
-                allRes = newRes
             }
         }
-        console.log(allRes)
-    };
-    combinationSum3(2, 4)
+
+        searchData(targetItem);
+        findParent(targetItem);
+        return targetObj;
+    }
+
+
 </script>
