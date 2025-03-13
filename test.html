@@ -116,54 +116,83 @@
     //     index++;
     //   }
     // };
+    // function test(temperatures) {
+    //   const res = []
+    //   for (let i = 0; i < temperatures.length; i++) {
+    //     if (i === temperatures.length - 1) {
+    //       res.push(0)
+    //     } else {
+    //       let index = temperatures.slice(i + 1).findIndex(item => item > temperatures[i])
+    //       if (index === -1) {
+    //         res.push(0)
+    //       } else {
+    //         res.push(index + 1)
+    //       }
+    //     }
 
-    function (n, k) {
-      let result = [];
-      let path = [];
 
-      function backtracking(startIndex) {
-        if (path.length === k) {
-          result.push([...path]);
-          return;
-        }
+    //   }
+    //   return res
+    // };
 
-        for (let i = startIndex; i <= n; i++) {
-          path.push(i);
-          backtracking(i + 1);
-          path.pop();
-        }
-      }
+    // var nextGreaterElements = function (nums) {
+    //   const result = new Array(nums.length).fill(-1);
+    //   const stack = [];
 
-      backtracking(1);
-      return result;
+    //   function test() {
+    //     for (let i = 0; i < nums.length * 2; i++) {
+    //       let index = i % nums.length;
+
+    //       debugger
+    //       if (!stack.length) {
+    //         stack.push(index);
+    //       } else if (nums[index] <= nums[stack[0]]) {
+    //         stack.unshift(index)
+    //       } else {
+    //         while (nums[index] > nums[stack[0]] && stack.length) {
+    //           result[stack[0]] = nums[index];
+    //           stack.shift()
+    //         }
+
+
+    //         stack.unshift(index)
+
+    //       }
+    //     }
+    //   }
+
+    //   test()
+
+    //   return result
+
+    // };
+
+
+    // const a = nextGreaterElements([5, 6, 5, 4, 5, 1])
+    // console.log('a===', a)
+
+
+    console.log('start');
+
+    async function asyncFunction() {
+      console.log('async function start');
+      await new Promise((resolve) => {
+        console.log('promise in async');
+        resolve();
+      });
+      console.log('async function end');
     }
 
-    function test(nums) {
-      let result = [[]];
-      let path = [];
+    new Promise((resolve) => {
+      console.log('outer promise start');
+      resolve();
+    }).then(() => {
+      console.log('outer promise then');
+    });
 
-      for (let i = 1; i <= nums.length; i++) {
+    asyncFunction();
 
-        function t(start) {
-          if (path.length === i) {
-            result.push([...path]);
-            return;
-          }
-
-          for (let j = start; j < nums.length; j++) {
-            path.push(nums[j]);
-            t(j + 1);
-            path.pop();
-          }
-
-
-        }
-
-        t(0)
-      }
-
-      return result;
-    };
+    console.log('end');
 
   </script>
 </body>
