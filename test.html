@@ -172,28 +172,142 @@
     // console.log('a===', a)
 
 
-    console.log('start');
+    // console.log('start');
 
-    async function asyncFunction() {
-      console.log('async function start');
-      await new Promise((resolve) => {
-        console.log('promise in async');
-        resolve();
-      });
-      console.log('async function end');
-    }
+    // async function asyncFunction() {
+    //   console.log('async function start');
+    //   await new Promise((resolve) => {
+    //     console.log('promise in async');
+    //     resolve();
+    //   });
+    //   console.log('async function end');
+    // }
 
-    new Promise((resolve) => {
-      console.log('outer promise start');
-      resolve();
-    }).then(() => {
-      console.log('outer promise then');
-    });
+    // new Promise((resolve) => {
+    //   console.log('outer promise start');
+    //   resolve();
+    // }).then(() => {
+    //   console.log('outer promise then');
+    // });
 
-    asyncFunction();
+    // asyncFunction();
 
-    console.log('end');
+    // console.log('end');
+    // var trap = function (height) {
+    //   let result = 0;
 
+    //   if (height.length < 3) {
+    //     return result;
+    //   }
+
+    //   const leftMaxArr = [height[0]];
+    //   const rightMaxArr = new Array(height.length).fill(0);
+    //   rightMaxArr[height.length - 1] = height[height.length - 1];
+
+    //   for (let i = 1; i < height.length - 2; i++) {
+    //     leftMaxArr[i] = height[i] > leftMaxArr[i - 1] ? height[i] : leftMaxArr[i - 1]
+    //   }
+
+    //   for (let i = height.length - 2; i >= 0; i--) {
+    //     rightMaxArr[i] = height[i] > rightMaxArr[i + 1] ? height[i] : rightMaxArr[i + 1]
+    //   }
+
+    //   console.log('rightMaxArr===', rightMaxArr)
+
+
+    //   for (let i = 1; i < height.length - 1; i++) {
+    //     debugger
+    //     let min = Math.min(leftMaxArr[i - 1], rightMaxArr[i + 1]);
+    //     if (height[i] < min) {
+    //       result += min - height[i]
+    //     }
+    //   }
+
+    //   return result
+
+    // };
+    // var largestRectangleArea = function (heights) {
+    //   let leftMinIndexArr = [null];
+
+    //   for (let i = 1; i < heights.length; i++) {
+    //     if (leftMinIndexArr[i - 1] === null) {
+    //       if (heights[i - 1] >= heights[i]) {
+    //         leftMinIndexArr[i] = null
+    //       } else {
+    //         leftMinIndexArr[i] = i - 1
+    //       }
+    //     } else {
+    //       if (heights[i] > heights[i - 1]) {
+    //         leftMinIndexArr[i] = i - 1;
+    //       } else if (heights[i] === heights[i - 1]) {
+    //         leftMinIndexArr[i] = leftMinIndexArr[i - 1]
+    //       }
+    //     }
+    //   }
+    // };
+
+    // const a = trap([5, 5, 1, 7, 1, 1, 5, 2, 7, 6])
+
+    // console.log('a===', a)
+    // var search = function (nums, target) {
+    //   if (nums.length <= 2) {
+    //     if (nums[0] === target) {
+    //       return 0
+    //     }
+    //     if (nums[1] === target) {
+    //       return 1
+    //     }
+    //   }
+
+    //   let newNums = nums.map((item, index) => index)
+
+
+    //   while (newNums.length > 2) {
+
+    //     // 中间元素是哪个？
+    //     let middle = Math.ceil(newNums.length / 2);
+
+    //     //
+    //     let index = newNums[middle - 1]
+
+    //     if (nums[index] === target) {
+    //       return index
+    //     } else if (nums[index] > target) {
+    //       newNums = newNums.slice(0, middle - 1)
+    //     } else {
+    //       newNums = newNums.slice(middle)
+    //     }
+    //   }
+
+
+    //   if (newNums.length <= 2) {
+    //     if (nums[newNums[0]] === target) {
+    //       return newNums[0]
+    //     }
+    //     if (nums[newNums[1]] === target) {
+    //       return newNums[1]
+    //     }
+    //   }
+
+    //   return -1
+    // };
+
+    // const a = search([-1, 0, 3, 5, 9, 12], 12)
+
+    // console.log('a===', a)
+
+
+    var minDepth = function (root) {
+      let result = 0;
+
+      if (root === null) {
+        return result;
+      }
+
+      result += Math.min(minDepth(root.left), minDepth(root.right)) + 1
+
+      return result;
+    };
   </script>
 </body>
 
