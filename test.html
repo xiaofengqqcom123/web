@@ -297,17 +297,32 @@
     // console.log('a===', a)
 
 
-    var minDepth = function (root) {
-      let result = 0;
+    var removeElement = function (nums, val) {
+      let slowIndex = 0;
+      let count = 0;
 
-      if (root === null) {
-        return result;
+      for (let fastIndex = 0; fastIndex < nums.length; fastIndex++) {
+        if (nums[fastIndex] !== val) {
+          nums[slowIndex] = nums[fastIndex]
+          slowIndex += 1;
+        }
+      }
+      debugger
+      console.log('nums===', nums)
+
+      for (let i = slowIndex; i < nums.length; i++) {
+        nums[i] = '_';
+        count += 1;
       }
 
-      result += Math.min(minDepth(root.left), minDepth(root.right)) + 1
 
-      return result;
+      return count;
+
     };
+
+    const a = removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2)
+
+    console.log('a===', a)
   </script>
 </body>
 

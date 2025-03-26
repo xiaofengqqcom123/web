@@ -8,72 +8,205 @@
 
 </html>
 <script>
-    // 用于画血缘的数据
-    const obj = {
-        id: '123',
-        name: '123',
-        parentId: '123',
-        children: [{
-            id: '123',
-            name: '123',
-            parentId: '123',
-        }, {
-            id: '234',
-            name: '234',
-            parentId: '123',
-            children: [{
-                id: 'test'
-            }]
-        }]
-    }
+    // // 用于画血缘的数据
+    // const obj = {
+    //     id: '123',
+    //     name: '123',
+    //     parentId: '123',
+    //     children: [{
+    //         id: '123',
+    //         name: '123',
+    //         parentId: '123',
+    //     }, {
+    //         id: '234',
+    //         name: '234',
+    //         parentId: '123',
+    //         children: [{
+    //             id: 'test'
+    //         }]
+    //     }]
+    // }
 
-    // 用于搜索的数据
-    const searchArr = [{
-        id: '123',
-        name: '123',
-        parentId: '123',
-        children: [{
-            id: '123'
-        }]
-    }, {
-        id: '234',
-        name: '234',
-        parentId: '123',
-    }]
+    // // 用于搜索的数据
+    // const searchArr = [{
+    //     id: '123',
+    //     name: '123',
+    //     parentId: '123',
+    //     children: [{
+    //         id: '123'
+    //     }]
+    // }, {
+    //     id: '234',
+    //     name: '234',
+    //     parentId: '123',
+    // }]
 
 
-    // 搜索实现
-    function search(arr, name) {
-        // 搜索到的目标
-        const targetItem = searchArr.find(item => item.name === name);
+    // // 搜索实现
+    // function search(arr, name) {
+    //     // 搜索到的目标
+    //     const targetItem = searchArr.find(item => item.name === name);
 
-        const targetObj = { targetItem }
+    //     const targetObj = { targetItem }
 
-        // 生成搜索的数据血缘图
-        function searchData(item) {
-            // 生成子节点
-            if (item.children) {
-                item.children = item.children.map(child => {
-                    return searchData(child)
-                })
-            }
+    //     // 生成搜索的数据血缘图
+    //     function searchData(item) {
+    //         // 生成子节点
+    //         if (item.children) {
+    //             item.children = item.children.map(child => {
+    //                 return searchData(child)
+    //             })
+    //         }
 
-        }
+    //     }
 
-        function findParent(item) {
-            // 生成父节点
-            if (item.parentId) {
-                const parent = searchArr.find(parent => parent.id === item.parentId);
-                if (parent) {
-                    item.parent = findParent(parent);
+    //     function findParent(item) {
+    //         // 生成父节点
+    //         if (item.parentId) {
+    //             const parent = searchArr.find(parent => parent.id === item.parentId);
+    //             if (parent) {
+    //                 item.parent = findParent(parent);
+    //             }
+    //         }
+    //     }
+
+    //     searchData(targetItem);
+    //     findParent(targetItem);
+    //     return targetObj;
+    // }
+
+
+
+    // var sortedSquares = function (nums) {
+    //     let leftIndex = 0;
+    //     let rightIndex = nums.length - 1;
+
+    //     // 由大到小的数组
+    //     let newArr = [];
+
+    //     while (leftIndex < rightIndex) {
+    //         let leftValue = Math.abs(nums[leftIndex]);
+    //         let rightValue = Math.abs(nums[rightIndex]);
+    //         if (leftValue > rightValue) {
+    //             newArr.push(leftValue)
+    //             leftIndex += 1;
+    //         } else if (leftValue === rightValue) {
+
+    //             if (rightIndex - leftIndex >= 2) {
+    //                 newArr.push(leftValue, rightValue);
+    //                 leftIndex += 1;
+    //                 rightIndex -= 1;
+    //             } else {
+    //                 newArr.push(leftValue);
+    //                 leftIndex += 1;
+    //             }
+
+    //         } else {
+    //             newArr.push(rightValue)
+    //             rightIndex -= 1;
+    //         }
+    //     }
+
+    //     newArr.push(nums[leftIndex])
+
+    //     console.log('newArr', newArr)
+
+    //     const targetArr = []
+
+    //     for (let i = newArr.length - 1; i >= 0; i--) {
+    //         targetArr.push(Math.pow(newArr[i], 2))
+    //     }
+
+    //     return targetArr
+    // };
+
+
+    // var sortedSquares = function (nums) {
+    //     let leftIndex = 0;
+    //     let rightIndex = nums.length - 1;
+
+    //     // 由大到小的数组
+    //     let newArr = [];
+
+    //     while (leftIndex < rightIndex) {
+    //         let leftValue = Math.abs(nums[leftIndex]);
+    //         let rightValue = Math.abs(nums[rightIndex]);
+    //         if (leftValue > rightValue) {
+    //             newArr.push(leftValue)
+    //             leftIndex += 1;
+    //         } else if (leftValue === rightValue) {
+
+    //             if (rightIndex - leftIndex >= 2) {
+    //                 newArr.push(leftValue, rightValue);
+    //                 leftIndex += 1;
+    //                 rightIndex -= 1;
+    //             } else {
+    //                 newArr.push(leftValue);
+    //                 leftIndex += 1;
+    //             }
+
+    //         } else {
+    //             newArr.push(rightValue)
+    //             rightIndex -= 1;
+    //         }
+    //     }
+
+    //     newArr.push(nums[leftIndex])
+
+    //     console.log('newArr', newArr)
+
+    //     const targetArr = []
+
+    //     for (let i = newArr.length - 1; i >= 0; i--) {
+    //         targetArr.push(Math.pow(newArr[i], 2))
+    //     }
+
+    //     return targetArr
+    // };
+    var removeElements = function (head, val) {
+
+    };
+
+    var generateMatrix = function (n) {
+        const arr = new Array(n).fill(new Array(n))
+        console.log('arr===', arr)
+
+        const dirction = ['right', 'bottom', 'left', 'top']
+        let currentDir = dirction[0]
+
+        let currentLen = n;
+        let currentIndex = 0;
+
+        for (let i = 1; i <= n * n; i++) {
+            if (currentDir === 'right') {
+                let row = (n - currentLen) / 2
+                if (currentIndex < currentLen) {
+                    arr[row][currentIndex + row] = i;
+                    currentIndex += 1;
+                } else {
+                    // 重置
+                    currentDir = 'bottom';
+                    currentIndex = 0;
+                    currentLen -= 1;
                 }
+
+            } else if (currentDir === 'bottom') {
+
+                const startRow = currentLen - Math.floor((n - currentLen) / 2)
+                if (currentIndex < currentLen) {
+                    arr[startRow + currentIndex][currentLen] = i;
+                    currentIndex += 1;
+                } else {
+                    // 重置
+                    currentDir = 'left';
+                    currentIndex = 0;
+                }
+            } else if (currentDir === 'left') {
+
             }
         }
-
-        searchData(targetItem);
-        findParent(targetItem);
-        return targetObj;
-    }
-
+    };
+    const a = generateMatrix(5)
+    console.log('a===', a)
 
 </script>
