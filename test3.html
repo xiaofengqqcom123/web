@@ -1,6 +1,5 @@
 <html>
-<style>
-</style>
+<style></style>
 <div class="father">
     <div class="test1">float left</div>
     <div class="test">test1</div>
@@ -41,7 +40,6 @@
     //     parentId: '123',
     // }]
 
-
     // // 搜索实现
     // function search(arr, name) {
     //     // 搜索到的目标
@@ -75,7 +73,48 @@
     //     return targetObj;
     // }
 
+    // var sortedSquares = function (nums) {
+    //     let leftIndex = 0;
+    //     let rightIndex = nums.length - 1;
 
+    //     // 由大到小的数组
+    //     let newArr = [];
+
+    //     while (leftIndex < rightIndex) {
+    //         let leftValue = Math.abs(nums[leftIndex]);
+    //         let rightValue = Math.abs(nums[rightIndex]);
+    //         if (leftValue > rightValue) {
+    //             newArr.push(leftValue)
+    //             leftIndex += 1;
+    //         } else if (leftValue === rightValue) {
+
+    //             if (rightIndex - leftIndex >= 2) {
+    //                 newArr.push(leftValue, rightValue);
+    //                 leftIndex += 1;
+    //                 rightIndex -= 1;
+    //             } else {
+    //                 newArr.push(leftValue);
+    //                 leftIndex += 1;
+    //             }
+
+    //         } else {
+    //             newArr.push(rightValue)
+    //             rightIndex -= 1;
+    //         }
+    //     }
+
+    //     newArr.push(nums[leftIndex])
+
+    //     console.log('newArr', newArr)
+
+    //     const targetArr = []
+
+    //     for (let i = newArr.length - 1; i >= 0; i--) {
+    //         targetArr.push(Math.pow(newArr[i], 2))
+    //     }
+
+    //     return targetArr
+    // };
 
     // var sortedSquares = function (nums) {
     //     let leftIndex = 0;
@@ -120,93 +159,29 @@
     //     return targetArr
     // };
 
+    var reverseList = function (head) {
+        let pre = null;
+        let current = head
 
-    // var sortedSquares = function (nums) {
-    //     let leftIndex = 0;
-    //     let rightIndex = nums.length - 1;
+        // while (current) {
+        //     let temp = current.next;
 
-    //     // 由大到小的数组
-    //     let newArr = [];
+        //     current.next = pre;
+        //     pre = current;
+        //     current = temp;
+        // }
 
-    //     while (leftIndex < rightIndex) {
-    //         let leftValue = Math.abs(nums[leftIndex]);
-    //         let rightValue = Math.abs(nums[rightIndex]);
-    //         if (leftValue > rightValue) {
-    //             newArr.push(leftValue)
-    //             leftIndex += 1;
-    //         } else if (leftValue === rightValue) {
-
-    //             if (rightIndex - leftIndex >= 2) {
-    //                 newArr.push(leftValue, rightValue);
-    //                 leftIndex += 1;
-    //                 rightIndex -= 1;
-    //             } else {
-    //                 newArr.push(leftValue);
-    //                 leftIndex += 1;
-    //             }
-
-    //         } else {
-    //             newArr.push(rightValue)
-    //             rightIndex -= 1;
-    //         }
-    //     }
-
-    //     newArr.push(nums[leftIndex])
-
-    //     console.log('newArr', newArr)
-
-    //     const targetArr = []
-
-    //     for (let i = newArr.length - 1; i >= 0; i--) {
-    //         targetArr.push(Math.pow(newArr[i], 2))
-    //     }
-
-    //     return targetArr
-    // };
-    var removeElements = function (head, val) {
-
-    };
-
-    var generateMatrix = function (n) {
-        const arr = new Array(n).fill(new Array(n))
-        console.log('arr===', arr)
-
-        const dirction = ['right', 'bottom', 'left', 'top']
-        let currentDir = dirction[0]
-
-        let currentLen = n;
-        let currentIndex = 0;
-
-        for (let i = 1; i <= n * n; i++) {
-            if (currentDir === 'right') {
-                let row = (n - currentLen) / 2
-                if (currentIndex < currentLen) {
-                    arr[row][currentIndex + row] = i;
-                    currentIndex += 1;
-                } else {
-                    // 重置
-                    currentDir = 'bottom';
-                    currentIndex = 0;
-                    currentLen -= 1;
-                }
-
-            } else if (currentDir === 'bottom') {
-
-                const startRow = currentLen - Math.floor((n - currentLen) / 2)
-                if (currentIndex < currentLen) {
-                    arr[startRow + currentIndex][currentLen] = i;
-                    currentIndex += 1;
-                } else {
-                    // 重置
-                    currentDir = 'left';
-                    currentIndex = 0;
-                }
-            } else if (currentDir === 'left') {
-
+        function reverse(current, pre) {
+            if (!current) {
+                return pre
             }
-        }
-    };
-    const a = generateMatrix(5)
-    console.log('a===', a)
 
+            let temp = current.next;
+            current.next = pre;
+            pre = current
+
+            reverse(temp, pre)
+        }
+        reverse(current, pre)
+    };
 </script>

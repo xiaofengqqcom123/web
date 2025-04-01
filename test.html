@@ -1,329 +1,312 @@
 <html>
-
-<head>
-  <title>倒计时页面</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 50px;
-    }
-
-    #countdown {
-      font-size: 48px;
-      color: #333;
-    }
-  </style>
-</head>
-
-<body>
-  <h1>倒计时开始</h1>
-  <div id="countdown"></div>
-
-  <script>
-
-
-    // var decodeString = function (s) {
-    //   let targetStr = '';
-    //   let index = 0;
-    //   let stack = []
-
-    //   function getIndex(start, str, target) {
-    //     for (let i = start; i < str.length; i++) {
-    //       if (str[i] === target) {
-    //         return i;
-    //       }
-    //     }
-    //   }
-
-    //   function geyLetter(start, str) {
-    //     for (let i = start; i < str.length; i++) {
-    //       if (str[i] !== '[' && str[i] !== ']' && !Number.isFinite(Number(s[index]))) {
-    //         return i;
-    //       }
-    //     }
-    //   }
-
-    //   function transStr() {
-    //     while (index < s.length) {
-    //       if (Number.isFinite(Number(s[index]))) {
-    //         let end = getIndex(index + 1, s, '[');
-    //         let num = s.slice(index, end);
-    //         stack.push(num);
-    //         index = end + 1;
-
-    //         // for(let i = end; i < s.length; i++) {
-    //         //   if (s[i] === '[') {
-    //         //     end = i;
-    //         //     break;
-    //         //   }
-    //         // }
-
-    //         // let letterEnd = getIndex(end + 1, s, ']');
-    //         // let letter = s.slice(end + 1, letterEnd);
-    //         // targetStr += letter.repeat(num);
-
-    //         // index = letterEnd + 1;
-    //       } else if (s[index] === '[') {
-    //         stack.push('[');
-    //         index++;
-    //       } else if (s[index] === ']') {
-    //         stack.push(']');
-    //         index++;
-    //       } else {
-    //         const end = geyLetter(index, s)
-    //         const letter = s.slice(index, end);
-    //         stack.push(letter);
-    //         index = end;
-    //       }
-    //     }
-    //   }
-    //   transStr();
-    //   console.log('stack', stack);
-    // }
-
-
-
-    // console.log(decodeString("3[a2[c]]"));
-
-    // var deleteMiddle = function (head) {
-    //   if (!head || !head.next) {
-    //     return head;
-    //   }
-
-    //   let length = 0;
-    //   let cur = head;
-
-    //   // 计算链表的长度
-    //   while (cur) {
-    //     length++;
-    //     cur = cur.next;
-    //   }
-
-    //   const middle = Math.floor(length / 2);
-
-    //   let end = head;
-    //   let index = 0;
-
-    //   while (index < middle) {
-
-
-    //     if (index !== middle - 1) {
-    //       end = end.next;
-    //     } else {
-    //       end.next = end.next.next;
-    //     }
-    //     index++;
-    //   }
-    // };
-    // function test(temperatures) {
-    //   const res = []
-    //   for (let i = 0; i < temperatures.length; i++) {
-    //     if (i === temperatures.length - 1) {
-    //       res.push(0)
-    //     } else {
-    //       let index = temperatures.slice(i + 1).findIndex(item => item > temperatures[i])
-    //       if (index === -1) {
-    //         res.push(0)
-    //       } else {
-    //         res.push(index + 1)
-    //       }
-    //     }
-
-
-    //   }
-    //   return res
-    // };
-
-    // var nextGreaterElements = function (nums) {
-    //   const result = new Array(nums.length).fill(-1);
-    //   const stack = [];
-
-    //   function test() {
-    //     for (let i = 0; i < nums.length * 2; i++) {
-    //       let index = i % nums.length;
-
-    //       debugger
-    //       if (!stack.length) {
-    //         stack.push(index);
-    //       } else if (nums[index] <= nums[stack[0]]) {
-    //         stack.unshift(index)
-    //       } else {
-    //         while (nums[index] > nums[stack[0]] && stack.length) {
-    //           result[stack[0]] = nums[index];
-    //           stack.shift()
-    //         }
-
-
-    //         stack.unshift(index)
-
-    //       }
-    //     }
-    //   }
-
-    //   test()
-
-    //   return result
-
-    // };
-
-
-    // const a = nextGreaterElements([5, 6, 5, 4, 5, 1])
-    // console.log('a===', a)
-
-
-    // console.log('start');
-
-    // async function asyncFunction() {
-    //   console.log('async function start');
-    //   await new Promise((resolve) => {
-    //     console.log('promise in async');
-    //     resolve();
-    //   });
-    //   console.log('async function end');
-    // }
-
-    // new Promise((resolve) => {
-    //   console.log('outer promise start');
-    //   resolve();
-    // }).then(() => {
-    //   console.log('outer promise then');
-    // });
-
-    // asyncFunction();
-
-    // console.log('end');
-    // var trap = function (height) {
-    //   let result = 0;
-
-    //   if (height.length < 3) {
-    //     return result;
-    //   }
-
-    //   const leftMaxArr = [height[0]];
-    //   const rightMaxArr = new Array(height.length).fill(0);
-    //   rightMaxArr[height.length - 1] = height[height.length - 1];
-
-    //   for (let i = 1; i < height.length - 2; i++) {
-    //     leftMaxArr[i] = height[i] > leftMaxArr[i - 1] ? height[i] : leftMaxArr[i - 1]
-    //   }
-
-    //   for (let i = height.length - 2; i >= 0; i--) {
-    //     rightMaxArr[i] = height[i] > rightMaxArr[i + 1] ? height[i] : rightMaxArr[i + 1]
-    //   }
-
-    //   console.log('rightMaxArr===', rightMaxArr)
-
-
-    //   for (let i = 1; i < height.length - 1; i++) {
-    //     debugger
-    //     let min = Math.min(leftMaxArr[i - 1], rightMaxArr[i + 1]);
-    //     if (height[i] < min) {
-    //       result += min - height[i]
-    //     }
-    //   }
-
-    //   return result
-
-    // };
-    // var largestRectangleArea = function (heights) {
-    //   let leftMinIndexArr = [null];
-
-    //   for (let i = 1; i < heights.length; i++) {
-    //     if (leftMinIndexArr[i - 1] === null) {
-    //       if (heights[i - 1] >= heights[i]) {
-    //         leftMinIndexArr[i] = null
-    //       } else {
-    //         leftMinIndexArr[i] = i - 1
-    //       }
-    //     } else {
-    //       if (heights[i] > heights[i - 1]) {
-    //         leftMinIndexArr[i] = i - 1;
-    //       } else if (heights[i] === heights[i - 1]) {
-    //         leftMinIndexArr[i] = leftMinIndexArr[i - 1]
-    //       }
-    //     }
-    //   }
-    // };
-
-    // const a = trap([5, 5, 1, 7, 1, 1, 5, 2, 7, 6])
-
-    // console.log('a===', a)
-    // var search = function (nums, target) {
-    //   if (nums.length <= 2) {
-    //     if (nums[0] === target) {
-    //       return 0
-    //     }
-    //     if (nums[1] === target) {
-    //       return 1
-    //     }
-    //   }
-
-    //   let newNums = nums.map((item, index) => index)
-
-
-    //   while (newNums.length > 2) {
-
-    //     // 中间元素是哪个？
-    //     let middle = Math.ceil(newNums.length / 2);
-
-    //     //
-    //     let index = newNums[middle - 1]
-
-    //     if (nums[index] === target) {
-    //       return index
-    //     } else if (nums[index] > target) {
-    //       newNums = newNums.slice(0, middle - 1)
-    //     } else {
-    //       newNums = newNums.slice(middle)
-    //     }
-    //   }
-
-
-    //   if (newNums.length <= 2) {
-    //     if (nums[newNums[0]] === target) {
-    //       return newNums[0]
-    //     }
-    //     if (nums[newNums[1]] === target) {
-    //       return newNums[1]
-    //     }
-    //   }
-
-    //   return -1
-    // };
-
-    // const a = search([-1, 0, 3, 5, 9, 12], 12)
-
-    // console.log('a===', a)
-
-
-    var removeElement = function (nums, val) {
-      let slowIndex = 0;
-      let count = 0;
-
-      for (let fastIndex = 0; fastIndex < nums.length; fastIndex++) {
-        if (nums[fastIndex] !== val) {
-          nums[slowIndex] = nums[fastIndex]
-          slowIndex += 1;
+  <head>
+    <title>倒计时页面</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 50px;
+      }
+
+      #countdown {
+        font-size: 48px;
+        color: #333;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>倒计时开始</h1>
+    <div id="countdown"></div>
+
+    <script>
+      // var decodeString = function (s) {
+      //   let targetStr = '';
+      //   let index = 0;
+      //   let stack = []
+
+      //   function getIndex(start, str, target) {
+      //     for (let i = start; i < str.length; i++) {
+      //       if (str[i] === target) {
+      //         return i;
+      //       }
+      //     }
+      //   }
+
+      //   function geyLetter(start, str) {
+      //     for (let i = start; i < str.length; i++) {
+      //       if (str[i] !== '[' && str[i] !== ']' && !Number.isFinite(Number(s[index]))) {
+      //         return i;
+      //       }
+      //     }
+      //   }
+
+      //   function transStr() {
+      //     while (index < s.length) {
+      //       if (Number.isFinite(Number(s[index]))) {
+      //         let end = getIndex(index + 1, s, '[');
+      //         let num = s.slice(index, end);
+      //         stack.push(num);
+      //         index = end + 1;
+
+      //         // for(let i = end; i < s.length; i++) {
+      //         //   if (s[i] === '[') {
+      //         //     end = i;
+      //         //     break;
+      //         //   }
+      //         // }
+
+      //         // let letterEnd = getIndex(end + 1, s, ']');
+      //         // let letter = s.slice(end + 1, letterEnd);
+      //         // targetStr += letter.repeat(num);
+
+      //         // index = letterEnd + 1;
+      //       } else if (s[index] === '[') {
+      //         stack.push('[');
+      //         index++;
+      //       } else if (s[index] === ']') {
+      //         stack.push(']');
+      //         index++;
+      //       } else {
+      //         const end = geyLetter(index, s)
+      //         const letter = s.slice(index, end);
+      //         stack.push(letter);
+      //         index = end;
+      //       }
+      //     }
+      //   }
+      //   transStr();
+      //   console.log('stack', stack);
+      // }
+
+      // console.log(decodeString("3[a2[c]]"));
+
+      // var deleteMiddle = function (head) {
+      //   if (!head || !head.next) {
+      //     return head;
+      //   }
+
+      //   let length = 0;
+      //   let cur = head;
+
+      //   // 计算链表的长度
+      //   while (cur) {
+      //     length++;
+      //     cur = cur.next;
+      //   }
+
+      //   const middle = Math.floor(length / 2);
+
+      //   let end = head;
+      //   let index = 0;
+
+      //   while (index < middle) {
+
+      //     if (index !== middle - 1) {
+      //       end = end.next;
+      //     } else {
+      //       end.next = end.next.next;
+      //     }
+      //     index++;
+      //   }
+      // };
+      // function test(temperatures) {
+      //   const res = []
+      //   for (let i = 0; i < temperatures.length; i++) {
+      //     if (i === temperatures.length - 1) {
+      //       res.push(0)
+      //     } else {
+      //       let index = temperatures.slice(i + 1).findIndex(item => item > temperatures[i])
+      //       if (index === -1) {
+      //         res.push(0)
+      //       } else {
+      //         res.push(index + 1)
+      //       }
+      //     }
+
+      //   }
+      //   return res
+      // };
+
+      // var nextGreaterElements = function (nums) {
+      //   const result = new Array(nums.length).fill(-1);
+      //   const stack = [];
+
+      //   function test() {
+      //     for (let i = 0; i < nums.length * 2; i++) {
+      //       let index = i % nums.length;
+
+      //       debugger
+      //       if (!stack.length) {
+      //         stack.push(index);
+      //       } else if (nums[index] <= nums[stack[0]]) {
+      //         stack.unshift(index)
+      //       } else {
+      //         while (nums[index] > nums[stack[0]] && stack.length) {
+      //           result[stack[0]] = nums[index];
+      //           stack.shift()
+      //         }
+
+      //         stack.unshift(index)
+
+      //       }
+      //     }
+      //   }
+
+      //   test()
+
+      //   return result
+
+      // };
+
+      // const a = nextGreaterElements([5, 6, 5, 4, 5, 1])
+      // console.log('a===', a)
+
+      // console.log('start');
+
+      // async function asyncFunction() {
+      //   console.log('async function start');
+      //   await new Promise((resolve) => {
+      //     console.log('promise in async');
+      //     resolve();
+      //   });
+      //   console.log('async function end');
+      // }
+
+      // new Promise((resolve) => {
+      //   console.log('outer promise start');
+      //   resolve();
+      // }).then(() => {
+      //   console.log('outer promise then');
+      // });
+
+      // asyncFunction();
+
+      // console.log('end');
+      // var trap = function (height) {
+      //   let result = 0;
+
+      //   if (height.length < 3) {
+      //     return result;
+      //   }
+
+      //   const leftMaxArr = [height[0]];
+      //   const rightMaxArr = new Array(height.length).fill(0);
+      //   rightMaxArr[height.length - 1] = height[height.length - 1];
+
+      //   for (let i = 1; i < height.length - 2; i++) {
+      //     leftMaxArr[i] = height[i] > leftMaxArr[i - 1] ? height[i] : leftMaxArr[i - 1]
+      //   }
+
+      //   for (let i = height.length - 2; i >= 0; i--) {
+      //     rightMaxArr[i] = height[i] > rightMaxArr[i + 1] ? height[i] : rightMaxArr[i + 1]
+      //   }
+
+      //   console.log('rightMaxArr===', rightMaxArr)
+
+      //   for (let i = 1; i < height.length - 1; i++) {
+      //     debugger
+      //     let min = Math.min(leftMaxArr[i - 1], rightMaxArr[i + 1]);
+      //     if (height[i] < min) {
+      //       result += min - height[i]
+      //     }
+      //   }
+
+      //   return result
+
+      // };
+      // var largestRectangleArea = function (heights) {
+      //   let leftMinIndexArr = [null];
+
+      //   for (let i = 1; i < heights.length; i++) {
+      //     if (leftMinIndexArr[i - 1] === null) {
+      //       if (heights[i - 1] >= heights[i]) {
+      //         leftMinIndexArr[i] = null
+      //       } else {
+      //         leftMinIndexArr[i] = i - 1
+      //       }
+      //     } else {
+      //       if (heights[i] > heights[i - 1]) {
+      //         leftMinIndexArr[i] = i - 1;
+      //       } else if (heights[i] === heights[i - 1]) {
+      //         leftMinIndexArr[i] = leftMinIndexArr[i - 1]
+      //       }
+      //     }
+      //   }
+      // };
+
+      // const a = trap([5, 5, 1, 7, 1, 1, 5, 2, 7, 6])
+
+      // console.log('a===', a)
+      // var search = function (nums, target) {
+      //   if (nums.length <= 2) {
+      //     if (nums[0] === target) {
+      //       return 0
+      //     }
+      //     if (nums[1] === target) {
+      //       return 1
+      //     }
+      //   }
+
+      //   let newNums = nums.map((item, index) => index)
+
+      //   while (newNums.length > 2) {
+
+      //     // 中间元素是哪个？
+      //     let middle = Math.ceil(newNums.length / 2);
+
+      //     //
+      //     let index = newNums[middle - 1]
+
+      //     if (nums[index] === target) {
+      //       return index
+      //     } else if (nums[index] > target) {
+      //       newNums = newNums.slice(0, middle - 1)
+      //     } else {
+      //       newNums = newNums.slice(middle)
+      //     }
+      //   }
+
+      //   if (newNums.length <= 2) {
+      //     if (nums[newNums[0]] === target) {
+      //       return newNums[0]
+      //     }
+      //     if (nums[newNums[1]] === target) {
+      //       return newNums[1]
+      //     }
+      //   }
+
+      //   return -1
+      // };
+
+      // const a = search([-1, 0, 3, 5, 9, 12], 12)
+
+      // console.log('a===', a)
+
+      var removeElement = function (nums, val) {
+        let slowIndex = 0;
+        let count = 0;
+
+        for (let fastIndex = 0; fastIndex < nums.length; fastIndex++) {
+          if (nums[fastIndex] !== val) {
+            nums[slowIndex] = nums[fastIndex];
+            slowIndex += 1;
+          }
         }
-      }
-      debugger
-      console.log('nums===', nums)
+        debugger;
+        console.log("nums===", nums);
 
-      for (let i = slowIndex; i < nums.length; i++) {
-        nums[i] = '_';
-        count += 1;
-      }
+        for (let i = slowIndex; i < nums.length; i++) {
+          nums[i] = "_";
+          count += 1;
+        }
 
+        return count;
+      };
 
-      return count;
+      const a = removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
 
-    };
-
-    const a = removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2)
-
-    console.log('a===', a)
-  </script>
-</body>
-
+      console.log("a===", a);
+    </script>
+  </body>
 </html>
