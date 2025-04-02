@@ -158,30 +158,27 @@
 
     //     return targetArr
     // };
+    var removeNthFromEnd = function (head, n) {
+        let size = 0;
+        let current = head;
 
-    var reverseList = function (head) {
-        let pre = null;
-        let current = head
-
-        // while (current) {
-        //     let temp = current.next;
-
-        //     current.next = pre;
-        //     pre = current;
-        //     current = temp;
-        // }
-
-        function reverse(current, pre) {
-            if (!current) {
-                return pre
-            }
-
-            let temp = current.next;
-            current.next = pre;
-            pre = current
-
-            reverse(temp, pre)
+        while (current) {
+            size += 1;
+            current = current.next
         }
-        reverse(current, pre)
+
+        // 正数第几个
+        let num = size - n + 1;
+        let curr = head
+        let target
+        while (num > 0 && target) {
+            curr = curr.next;
+            num -= 1
+            target
+        }
+
+
+
+        return head
     };
 </script>
