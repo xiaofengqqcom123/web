@@ -158,4 +158,22 @@
 
     //     return targetArr
     // };
+
+    var twoSum = function (nums, target) {
+        let map = new Map();
+
+        for (let i = 0; i < nums.length; i++) {
+            map.set(nums[i], i)
+        }
+
+        for (let i = 0; i < nums.length - 1; i++) {
+            const count = target - nums[i];
+            if (map.has(count) && map.get(count) !== i) {
+
+                return [i, map.get(count)]
+            }
+        }
+
+        return []
+    };
 </script>
